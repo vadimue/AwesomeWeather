@@ -6,7 +6,8 @@ target 'AwesomeWeather' do
   use_frameworks!
 
   # Pods for AwesomeWeather
-
+    pod 'Alamofire', '~> 4.3'
+    
   target 'AwesomeWeatherTests' do
     inherit! :search_paths
     # Pods for testing
