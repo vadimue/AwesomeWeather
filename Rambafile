@@ -1,0 +1,35 @@
+### Headers settings
+company: Ciklum
+
+### Xcode project settings
+project_name: Awesome Weather
+xcodeproj_path: AwesomeWeather.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: AwesomeWeather
+
+# The file path for new modules
+project_file_path: AwesomeWeather/Modules
+
+# The Xcode group path to new modules
+project_group_path: AwesomeWeather/Modules
+
+### Tests generation settings section
+# The tests target name
+test_target: AwesomeWeatherTests
+
+# The file path for new tests
+test_file_path: AwesomeWeatherTests/Modules
+
+# The Xcode group path to new tests
+test_group_path: AwesomeWeatherTests/Modules
+
+### Dependencies settings section
+podfile_path: Podfile
+
+### Templates
+catalogs:
+- 'https://github.com/rambler-digital-solutions/generamba-catalog'
+templates:
+- {name: swifty_viper}
