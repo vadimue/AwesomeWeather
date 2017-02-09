@@ -14,7 +14,7 @@ struct WeatherResponse: Mappable {
     public var cod : Int?
     public var message : Double?
     public var cnt : Int?
-    public var list : Array<List>?
+    public var list : Array<WeatherDetails>?
     public var city : City?
 
     init?(map: Map) {

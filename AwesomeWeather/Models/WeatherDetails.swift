@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct List : Mappable {
+struct WeatherDetails : Mappable {
     
     public var dt : Int?
     public var main : Main?

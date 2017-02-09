@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WeatherForecastInteractorInput {
-
+    func findForecast(forCity city: String)
 }

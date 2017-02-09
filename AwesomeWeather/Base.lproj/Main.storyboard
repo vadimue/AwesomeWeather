@@ -30,17 +30,20 @@
                                     <string>Title</string>
                                     <string>Title</string>
                                 </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="leS-7E-z78"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hrd-Wt-Pwo">
                                 <rect key="frame" x="0.0" y="108" width="414" height="628"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WeatherForecastCell" rowHeight="110" id="782-yM-T6L">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WeatherForecastCell" rowHeight="110" id="782-yM-T6L" customClass="WeatherForecastTableViewCell" customModule="AwesomeWeather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="782-yM-T6L" id="J3u-fW-AYE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="109.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Oue-zv-40b">
@@ -93,6 +96,13 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="Oue-zv-40b" secondAttribute="trailing" id="T1f-U2-Wjq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dayOfWeekLabel" destination="nW6-qF-aGb" id="75T-wz-PZA"/>
+                                            <outlet property="tempLabel" destination="sDA-wH-HzX" id="HFs-dt-DsN"/>
+                                            <outlet property="weatherDescriptionLabel" destination="j7T-vC-yv6" id="03E-QU-37s"/>
+                                            <outlet property="weatherIcon" destination="Ats-aD-Snr" id="gSI-8P-nI2"/>
+                                            <outlet property="windLabel" destination="DkP-nI-Dmt" id="kv8-Pq-sbR"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -104,6 +114,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Weather Forecast" id="1DC-oP-dw3"/>
+                    <connections>
+                        <outlet property="tableView" destination="Hrd-Wt-Pwo" id="kyN-54-YpS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <customObject id="ZZq-V9-bgp" customClass="WeatherForecastModuleInitializer" customModule="AwesomeWeather" customModuleProvider="target">
@@ -117,7 +130,6 @@
         <!--Navigation Controller-->
         <scene sceneID="JpB-RL-zvX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nwQ-ig-fVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8v2-xj-uJ7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tiv-nZ-Ebm">
@@ -129,6 +141,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bCb-Dk-wIN"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nwQ-ig-fVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>

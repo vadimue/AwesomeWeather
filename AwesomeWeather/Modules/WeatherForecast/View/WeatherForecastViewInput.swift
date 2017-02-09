@@ -14,4 +14,7 @@ protocol WeatherForecastViewInput: class {
     */
 
     func setupInitialState()
+
+    func showWeatherForecast(_ forecast: [WeatherDetails]);
+    func changeTitle(_ title: String);
 }

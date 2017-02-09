@@ -14,4 +14,5 @@ protocol WeatherForecastViewOutput {
     */
 
     func viewIsReady()
+    func findForecast(forText text: String?)
 }

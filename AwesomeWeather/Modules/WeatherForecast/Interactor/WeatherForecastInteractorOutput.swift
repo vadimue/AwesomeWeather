@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WeatherForecastInteractorOutput: class {
-
+    func gotWeatherForecast(_ forecast: WeatherResponse)
 }

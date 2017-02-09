@@ -15,4 +15,17 @@ class WeatherForecastPresenter: WeatherForecastModuleInput, WeatherForecastViewO
     func viewIsReady() {
 
     }
+
+    func findForecast(forText text: String?) {
+        // todo chech this condition on null exception
+        guard let city = text, !(text?.isEmpty)! else {
+            return
+        }
+        interactor.findForecast(forCity: city)
+    }
+
+    func gotWeatherForecast(_ forecast: WeatherResponse) {
+        view.showWeatherForecast(forecast.list!)
+        view.changeTitle(forecast.city!.name!)
+    }
 }
