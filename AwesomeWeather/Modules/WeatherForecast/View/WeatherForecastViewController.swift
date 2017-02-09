@@ -18,7 +18,6 @@ class WeatherForecastViewController: UIViewController, WeatherForecastViewInput,
         output.viewIsReady()
     }
 
-
     // MARK: WeatherForecastViewInput
     func setupInitialState() {
     }
@@ -31,5 +30,5 @@ class WeatherForecastViewController: UIViewController, WeatherForecastViewInput,
         return tableView.dequeueReusableCell(withIdentifier: "WeatherForecastCell", for: indexPath)
     }
     
-
+    
 }
