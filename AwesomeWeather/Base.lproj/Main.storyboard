@@ -102,6 +102,7 @@
                                             <outlet property="weatherDescriptionLabel" destination="j7T-vC-yv6" id="03E-QU-37s"/>
                                             <outlet property="weatherIcon" destination="Ats-aD-Snr" id="gSI-8P-nI2"/>
                                             <outlet property="windLabel" destination="DkP-nI-Dmt" id="kv8-Pq-sbR"/>
+                                            <segue destination="LOe-YN-RgP" kind="show" id="Air-hy-0KW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -125,7 +126,64 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="1170" y="137"/>
+            <point key="canvasLocation" x="1080" y="137"/>
+        </scene>
+        <!--Detailweather View Controller-->
+        <scene sceneID="akX-fB-LCy">
+            <objects>
+                <viewController id="LOe-YN-RgP" customClass="DetailWeatherViewController" customModule="AwesomeWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sAZ-X8-8Uk"/>
+                        <viewControllerLayoutGuide type="bottom" id="JLe-FR-yrI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yAS-R3-Ndj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBK-jJ-Uu2">
+                                <rect key="frame" x="154.33333333333337" y="96" width="105.66666666666663" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfQ-ja-5hf">
+                                <rect key="frame" x="163" y="153" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggq-zn-eg5">
+                                <rect key="frame" x="172.66666666666666" y="210" width="68.666666666666686" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pBK-jJ-Uu2" firstAttribute="centerX" secondItem="yAS-R3-Ndj" secondAttribute="centerX" id="5LX-46-alD"/>
+                            <constraint firstItem="PfQ-ja-5hf" firstAttribute="centerX" secondItem="yAS-R3-Ndj" secondAttribute="centerX" id="5VS-32-BaH"/>
+                            <constraint firstItem="Ggq-zn-eg5" firstAttribute="top" secondItem="PfQ-ja-5hf" secondAttribute="bottom" constant="36" id="M1M-bz-qjM"/>
+                            <constraint firstItem="PfQ-ja-5hf" firstAttribute="top" secondItem="pBK-jJ-Uu2" secondAttribute="bottom" constant="36" id="ULa-Zg-DQU"/>
+                            <constraint firstItem="pBK-jJ-Uu2" firstAttribute="centerX" secondItem="yAS-R3-Ndj" secondAttribute="centerX" id="WkF-od-pPz"/>
+                            <constraint firstItem="pBK-jJ-Uu2" firstAttribute="top" secondItem="sAZ-X8-8Uk" secondAttribute="bottom" constant="32" id="ovK-R5-jKj"/>
+                            <constraint firstItem="Ggq-zn-eg5" firstAttribute="centerX" secondItem="yAS-R3-Ndj" secondAttribute="centerX" id="rwz-pU-lRq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="PfQ-ja-5hf" id="ENS-Y1-cSf"/>
+                        <outlet property="humidityLabel" destination="Ggq-zn-eg5" id="Hf8-V6-AHP"/>
+                        <outlet property="mainWeatherLabel" destination="pBK-jJ-Uu2" id="Cdb-EK-WqG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h55-yu-gqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="VrI-6Q-i0U" customClass="DetailWeatherModuleInitializer" customModule="AwesomeWeather" customModuleProvider="target">
+                    <connections>
+                        <outlet property="detailweatherViewController" destination="LOe-YN-RgP" id="s8h-8v-xFK"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="2013" y="137"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JpB-RL-zvX">

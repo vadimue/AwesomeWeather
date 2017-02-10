@@ -33,7 +33,6 @@ class WeatherForecastViewController: UIViewController, WeatherForecastViewInput,
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherForecastCell", for: indexPath) as! WeatherForecastTableViewCell
         configure(cell: cell, forIndex: indexPath.row)
         return cell
-
     }
 
     private func configure(cell: WeatherForecastTableViewCell, forIndex index: Int) {
