@@ -5,18 +5,25 @@ PODS:
     - ObjectMapper (~> 2.0)
   - ObjectMapper (2.2.2)
   - Swinject (2.0.0)
+  - SwinjectStoryboard (1.0.0):
+    - Swinject (= 2.0.0)
+  - ViperMcFlurry (1.5.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - AlamofireObjectMapper (~> 4.0)
   - Swinject (= 2.0.0)
+  - SwinjectStoryboard (= 1.0.0)
+  - ViperMcFlurry
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
   Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
+  SwinjectStoryboard: 8e0d3c0202b64172bdf915d55e8dc83d9c4e7863
+  ViperMcFlurry: 701bc3ad8d188b1f1e157ec0ddf4e77184de88b5
 
-PODFILE CHECKSUM: 03db65e7f001fdbc5decd2c59c3ae2d3247ca615
+PODFILE CHECKSUM: f7316d6bd70af547109da604703b345c7d784f9a
 
 COCOAPODS: 1.2.0
