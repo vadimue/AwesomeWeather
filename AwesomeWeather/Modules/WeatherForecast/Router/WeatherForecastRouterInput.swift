@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import ViperMcFlurry
 
-protocol WeatherForecastRouterInput {
+protocol WeatherForecastRouterInput : RamblerViperModuleInput {
 
 }

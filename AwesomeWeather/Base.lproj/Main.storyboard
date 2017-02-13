@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Weatherforecast View Controller-->
+        <!--Weather Forecast-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="WeatherForecastViewController" customModule="AwesomeWeather" customModuleProvider="target" sceneMemberID="viewController">
@@ -120,15 +120,10 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="ZZq-V9-bgp" customClass="WeatherForecastModuleInitializer" customModule="AwesomeWeather" customModuleProvider="target">
-                    <connections>
-                        <outlet property="weatherforecastViewController" destination="BYZ-38-t0r" id="CXw-Zf-m72"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="1080" y="137"/>
         </scene>
-        <!--Detailweather View Controller-->
+        <!--Detail Weather View Controller-->
         <scene sceneID="akX-fB-LCy">
             <objects>
                 <viewController id="LOe-YN-RgP" customClass="DetailWeatherViewController" customModule="AwesomeWeather" customModuleProvider="target" sceneMemberID="viewController">
@@ -177,11 +172,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h55-yu-gqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="VrI-6Q-i0U" customClass="DetailWeatherModuleInitializer" customModule="AwesomeWeather" customModuleProvider="target">
-                    <connections>
-                        <outlet property="detailweatherViewController" destination="LOe-YN-RgP" id="s8h-8v-xFK"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="2013" y="137"/>
         </scene>

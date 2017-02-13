@@ -6,6 +6,10 @@
 //  Copyright © 2017 Ciklum. All rights reserved.
 //
 
-class WeatherForecastRouter: WeatherForecastRouterInput {
+import ViperMcFlurry
+
+class WeatherForecastRouter: NSObject, WeatherForecastRouterInput {
+
+    var transitionHandler: RamblerViperModuleTransitionHandlerProtocol!
 
 }
