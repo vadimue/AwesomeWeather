@@ -8,6 +8,7 @@ target 'AwesomeWeather' do
   # Pods for AwesomeWeather
     pod 'Alamofire', '~> 4.3'
     pod 'AlamofireObjectMapper', '~> 4.0'
+    pod 'Swinject', '2.0.0'
     
   target 'AwesomeWeatherTests' do
     inherit! :search_paths
