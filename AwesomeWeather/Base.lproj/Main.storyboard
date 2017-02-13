@@ -102,7 +102,6 @@
                                             <outlet property="weatherDescriptionLabel" destination="j7T-vC-yv6" id="03E-QU-37s"/>
                                             <outlet property="weatherIcon" destination="Ats-aD-Snr" id="gSI-8P-nI2"/>
                                             <outlet property="windLabel" destination="DkP-nI-Dmt" id="kv8-Pq-sbR"/>
-                                            <segue destination="LOe-YN-RgP" kind="show" id="Air-hy-0KW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -117,6 +116,7 @@
                     <navigationItem key="navigationItem" title="Weather Forecast" id="1DC-oP-dw3"/>
                     <connections>
                         <outlet property="tableView" destination="Hrd-Wt-Pwo" id="kyN-54-YpS"/>
+                        <segue destination="LOe-YN-RgP" kind="show" identifier="toDetailWeather" id="C1S-sD-pie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -126,7 +126,7 @@
         <!--Detail Weather View Controller-->
         <scene sceneID="akX-fB-LCy">
             <objects>
-                <viewController id="LOe-YN-RgP" customClass="DetailWeatherViewController" customModule="AwesomeWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="detailWeatherController" storyboardIdentifier="detailWeatherController" id="LOe-YN-RgP" customClass="DetailWeatherViewController" customModule="AwesomeWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sAZ-X8-8Uk"/>
                         <viewControllerLayoutGuide type="bottom" id="JLe-FR-yrI"/>

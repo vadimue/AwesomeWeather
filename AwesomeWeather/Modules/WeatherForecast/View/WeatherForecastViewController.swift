@@ -59,4 +59,8 @@ class WeatherForecastViewController: UIViewController, WeatherForecastViewInput,
     func changeTitle(_ title: String) {
         self.title = title
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output.didSelectRow(withWeatherDetails: (weatherForecast?[indexPath.row])!)
+    }
 }

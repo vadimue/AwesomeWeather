@@ -15,4 +15,5 @@ protocol WeatherForecastViewOutput {
 
     func viewIsReady()
     func findForecast(forText text: String?)
+    func didSelectRow(withWeatherDetails weatherDetails: WeatherDetails)
 }

@@ -7,5 +7,5 @@
 //
 
 protocol DetailWeatherModuleInput: class {
-
+    func configureWith(weatherDetails: WeatherDetails)
 }

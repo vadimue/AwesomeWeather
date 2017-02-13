@@ -6,7 +6,6 @@
 //  Copyright © 2017 Vadym Brusko. All rights reserved.
 //
 
-import Foundation
 import Swinject
 
 class WeatherForecastAssembly: Assembly {

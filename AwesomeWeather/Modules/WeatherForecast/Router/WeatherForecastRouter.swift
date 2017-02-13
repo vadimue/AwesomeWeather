@@ -10,6 +10,16 @@ import ViperMcFlurry
 
 class WeatherForecastRouter: NSObject, WeatherForecastRouterInput {
 
+    let toDetailWeatherSegue = "toDetailWeather"
+
     var transitionHandler: RamblerViperModuleTransitionHandlerProtocol!
 
+    func openDetailWeatherModule(withWeatherDetails data: WeatherDetails) {
+        transitionHandler.openModule!(usingSegue: toDetailWeatherSegue).thenChain { moduleInput in
+            guard let detailWeatherModuleInput = moduleInput as? DetailWeatherModuleInput else { fatalError("invalid module type") }
+            detailWeatherModuleInput.configureWith(weatherDetails: data)
+
+            return nil
+        }
+    }
 }

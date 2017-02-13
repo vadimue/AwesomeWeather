@@ -10,5 +10,5 @@ import Foundation
 import ViperMcFlurry
 
 protocol WeatherForecastRouterInput : RamblerViperModuleInput {
-
+    func openDetailWeatherModule(withWeatherDetails data: WeatherDetails)
 }

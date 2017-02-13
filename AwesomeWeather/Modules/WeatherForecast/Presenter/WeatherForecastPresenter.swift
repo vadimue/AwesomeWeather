@@ -28,4 +28,8 @@ class WeatherForecastPresenter: WeatherForecastModuleInput, WeatherForecastViewO
         view.showWeatherForecast(forecast.list!)
         view.changeTitle(forecast.city!.name!)
     }
+
+    func didSelectRow(withWeatherDetails weatherDetails: WeatherDetails) {
+        router.openDetailWeatherModule(withWeatherDetails: weatherDetails)
+    }
 }

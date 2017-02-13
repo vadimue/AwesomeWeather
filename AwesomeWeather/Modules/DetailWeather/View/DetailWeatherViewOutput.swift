@@ -6,7 +6,9 @@
 //  Copyright © 2017 Ciklum. All rights reserved.
 //
 
-protocol DetailWeatherViewOutput {
+import Foundation
+
+@objc protocol DetailWeatherViewOutput {
 
     /**
         @author Vadim Brusko
