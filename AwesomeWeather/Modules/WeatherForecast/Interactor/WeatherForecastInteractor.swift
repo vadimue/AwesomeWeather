@@ -10,7 +10,7 @@ class WeatherForecastInteractor: WeatherForecastInteractorInput {
 
     weak var output: WeatherForecastInteractorOutput!
 
-    let weatherService: WeatherService = WeatherServiceImpl()
+    var weatherService: WeatherService!
 
     func findForecast(forCity city: String) {
         weatherService.obtainForecast(forCity: city) { (response) in

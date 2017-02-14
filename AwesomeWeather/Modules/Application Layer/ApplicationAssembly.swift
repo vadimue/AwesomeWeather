@@ -15,6 +15,7 @@ class ApplicationAssembly {
     //Use default dependency
     class var assembler: Assembler {
         return try! Assembler(assemblies: [
+            ServicesAssembly(),
             WeatherForecastAssembly(),
             DetailWeatherAssembly()
             ])

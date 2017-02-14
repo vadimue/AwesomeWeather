@@ -15,7 +15,7 @@ class WeatherForecastAssembly: Assembly {
         container.register(WeatherForecastInteractor.self) { (r, presenter: WeatherForecastPresenter) in
             let interactor = WeatherForecastInteractor()
             interactor.output = presenter
-
+            interactor.weatherService = r.resolve(WeatherService.self)
             return interactor
         }
 
