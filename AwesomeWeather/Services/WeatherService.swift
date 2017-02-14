@@ -6,7 +6,6 @@
 //  Copyright © 2017 Vadym Brusko. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 import AlamofireObjectMapper
 
