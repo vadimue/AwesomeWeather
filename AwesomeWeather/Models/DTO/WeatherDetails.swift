@@ -13,7 +13,7 @@ struct WeatherDetails : Mappable {
     
     public var dt : Int?
     public var main : Main?
-    public var weather : Array<Weather>?
+    public var weather : Array<WeatherDescription>?
     public var clouds : Clouds?
     public var wind : Wind?
     public var rain : Rain?
