@@ -11,5 +11,6 @@ import Swinject
 class ServicesAssembly: Assembly {
     func assemble(container: Container) {
         container.register(WeatherService.self) { _ in WeatherServiceImpl() }
+        container.register(DataService.self) { _ in DataServiceImpl() }
     }
 }

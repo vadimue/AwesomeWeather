@@ -15,7 +15,7 @@ class WeatherForecastAssembly: Assembly {
         container.register(WeatherForecastInteractor.self) { (r, presenter: WeatherForecastPresenter) in
             let interactor = WeatherForecastInteractor()
             interactor.output = presenter
-            interactor.weatherService = r.resolve(WeatherService.self)
+            interactor.weatherProviderService = r.resolve(WeatherProviderService.self)
             return interactor
         }
 
@@ -33,6 +33,19 @@ class WeatherForecastAssembly: Assembly {
             presenter.router = r.resolve(WeatherForecastRouter.self, argument: viewController)
 
             return presenter
+        }
+
+        container.register(WeatherProviderService.self) { r in
+            let weatherProviderService = WeatherProviderServiceImpl()
+            weatherProviderService.weatherDataStoreService = r.resolve(WeatherDataStoreService.self)
+            weatherProviderService.weatherService = r.resolve(WeatherService.self)
+            return weatherProviderService
+        }
+
+        container.register(WeatherDataStoreService.self) { r in
+            let weatherDataStoreService = WeatherDataStoreServiceImpl()
+            weatherDataStoreService.dataService = r.resolve(DataService.self)
+            return weatherDataStoreService
         }
 
         container.storyboardInitCompleted(WeatherForecastViewController.self) { (r, viewController) in
