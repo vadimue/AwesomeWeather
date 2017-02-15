@@ -14,14 +14,14 @@ class DetailWeatherPresenter: NSObject, DetailWeatherModuleInput, DetailWeatherV
     var interactor: DetailWeatherInteractorInput!
     var router: DetailWeatherRouterInput!
 
-    var initialWeatherDetails: WeatherDetails?
+    var initialWeather: Weather?
 
     func viewIsReady() {
-        guard let weatherDetails = initialWeatherDetails else { return }
-        view.setupInitialState(withWeatherDetails: weatherDetails)
+        guard let weather = initialWeather else { return }
+        view.setupInitialState(withWeather: weather)
     }
 
-    func configureWith(weatherDetails: WeatherDetails) {
-        initialWeatherDetails = weatherDetails
+    func configureWith(weather: Weather) {
+        initialWeather = weather
     }
 }

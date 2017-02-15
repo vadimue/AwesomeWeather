@@ -24,9 +24,9 @@ class DetailWeatherViewController: UIViewController, DetailWeatherViewInput {
 
 
     // MARK: DetailWeatherViewInput
-    func setupInitialState(withWeatherDetails weatherDetails: WeatherDetails) {
-        mainWeatherLabel.text = weatherDetails.weather![0].main!
-        descriptionLabel.text = weatherDetails.weather![0].description!
-        humidityLabel.text = String(weatherDetails.main!.humidity!)
+    func setupInitialState(withWeather weather: Weather) {
+        mainWeatherLabel.text = weather.main
+        descriptionLabel.text = weather.desc
+        humidityLabel.text = String(weather.humidity!)
     }
 }

@@ -14,10 +14,10 @@ class WeatherForecastRouter: NSObject, WeatherForecastRouterInput {
 
     var transitionHandler: RamblerViperModuleTransitionHandlerProtocol!
 
-    func openDetailWeatherModule(withWeatherDetails data: WeatherDetails) {
+    func openDetailWeatherModule(withWeatherDetails data: Weather) {
         transitionHandler.openModule!(usingSegue: toDetailWeatherSegue).thenChain { moduleInput in
             guard let detailWeatherModuleInput = moduleInput as? DetailWeatherModuleInput else { fatalError("invalid module type") }
-            detailWeatherModuleInput.configureWith(weatherDetails: data)
+            detailWeatherModuleInput.configureWith(weather: data)
 
             return nil
         }

@@ -13,5 +13,5 @@ protocol DetailWeatherViewInput: class {
         Setup initial state of the view
     */
 
-    func setupInitialState(withWeatherDetails weatherDetails: WeatherDetails)
+    func setupInitialState(withWeather weather: Weather)
 }

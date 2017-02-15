@@ -24,12 +24,12 @@ class WeatherForecastPresenter: WeatherForecastModuleInput, WeatherForecastViewO
         interactor.findForecast(forCity: city)
     }
 
-    func gotWeatherForecast(_ forecast: WeatherResponse) {
-        view.showWeatherForecast(forecast.list!)
-        view.changeTitle(forecast.city!.name!)
+    func gotWeatherForecast(_ forecast: [Weather]) {
+        view.showWeatherForecast(forecast)
+        //view.changeTitle(forecast.city!.name!)
     }
 
-    func didSelectRow(withWeatherDetails weatherDetails: WeatherDetails) {
+    func didSelectRow(withWeatherDetails weatherDetails: Weather) {
         router.openDetailWeatherModule(withWeatherDetails: weatherDetails)
     }
 }

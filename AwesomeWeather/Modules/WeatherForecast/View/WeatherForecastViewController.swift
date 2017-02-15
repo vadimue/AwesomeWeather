@@ -14,7 +14,11 @@ class WeatherForecastViewController: UIViewController, WeatherForecastViewInput,
 
     @IBOutlet weak var tableView: UITableView!
 
-    var weatherForecast: [WeatherDetails]?
+    var weatherForecast: [Weather]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,21 +43,20 @@ class WeatherForecastViewController: UIViewController, WeatherForecastViewInput,
         guard let weatherDetails = weatherForecast?[index] else {
             return
         }
-        let date = Date(timeIntervalSince1970: TimeInterval(weatherDetails.dt!))
+        let date = weatherDetails.time
         cell.dayOfWeekLabel.text = String(describing: date)
-        cell.weatherDescriptionLabel.text = weatherDetails.weather?[0].main!
-        cell.tempLabel.text = String(describing: weatherDetails.main!.temp!)
-        cell.windLabel.text = String(describing: weatherDetails.wind!.speed!)
-        cell.weatherIcon.image = UIImage(named: "\(weatherDetails.weather![0].icon!).png")
+        cell.weatherDescriptionLabel.text = weatherDetails.desc
+        cell.tempLabel.text = String(describing: weatherDetails.temp!)
+        cell.windLabel.text = String(describing: weatherDetails.wind!)
+        cell.weatherIcon.image = UIImage(named: "\(weatherDetails.icon!).png")
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         output.findForecast(forText: searchBar.text)
     }
 
-    func showWeatherForecast(_ forecast: [WeatherDetails]) {
+    func showWeatherForecast(_ forecast: [Weather]) {
         weatherForecast = forecast
-        tableView.reloadData()
     }
 
     func changeTitle(_ title: String) {
