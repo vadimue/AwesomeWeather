@@ -11,7 +11,7 @@ import SugarRecord
 import CoreData
 
 protocol DataService {
-    var coreDataStorage: CoreDataDefaultStorage { get }
+    func create<T>() -> T where T: Entity
     func fetch<T>() -> [T] where T: Entity
     func insert<T>(entity: T) where T: Entity
     func insert<T>(entities: [T]) where T: Entity
@@ -30,8 +30,9 @@ class DataServiceImpl: NSObject, DataService {
     } ()
 
     func fetch<T>() -> [T] where T: Entity {
-        let data = try! coreDataStorage.fetch(FetchRequest<T>())
-        return data
+        return try! coreDataStorage.operation { (context, save) -> [T] in
+            return try! context.fetch(FetchRequest<T>())
+        }
     }
 
     func insert<T>(entity: T) where T: Entity {
@@ -59,14 +60,18 @@ class DataServiceImpl: NSObject, DataService {
 
     func remove<T>(entities: [T]) where T: Entity {
         try! coreDataStorage.operation { (context, save) -> Void in
-            do {
-                try context.remove(entities)
-                save()
-            } catch {
-                // TODO: handle errors as appropriate
-                print(error)
-            }
+            try! context.remove(entities)
+            save()
         }
     }
+
+    func create<T>() -> T where T: Entity {
+        return try! coreDataStorage.operation { (context, save) -> T in
+            let entity: T = try! context.create()
+            save()
+            return entity
+        }
+    }
+
 }
 

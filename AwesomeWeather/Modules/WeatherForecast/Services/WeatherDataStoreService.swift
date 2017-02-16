@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SugarRecord
 
 protocol WeatherDataStoreService {
     func saveWeatherResponse(weatherResponse: WeatherResponse)
@@ -21,7 +20,6 @@ class WeatherDataStoreServiceImpl: WeatherDataStoreService {
     func saveWeatherResponse(weatherResponse: WeatherResponse) {
         guard let weatherResponseItems = weatherResponse.list else { return }
         saveWeatherDetails(weatherResponse: weatherResponseItems)
-        //dataService.insert(entities: weatherDataItems)
     }
 
     func fetch() -> [WeatherDetailsData] {
@@ -29,16 +27,11 @@ class WeatherDataStoreServiceImpl: WeatherDataStoreService {
     }
 
     private func saveWeatherDetails(weatherResponse: [WeatherDetails]) {
-        try! dataService.coreDataStorage.operation { (context, save) -> Void in
-            for weatherDetails in weatherResponse {
-                self.createWeatherData(fromContext: context, withWeatherDetails: weatherDetails)
-            }
-            save()
-        }
+        dataService.insert(entities: weatherResponse.map {createWeatherData(withWeatherDetails: $0)})
     }
 
-    private func createWeatherData(fromContext context: Context, withWeatherDetails weatherDetails: WeatherDetails) {
-        let weatherData: WeatherDetailsData = try! context.create()
+    private func createWeatherData(withWeatherDetails weatherDetails: WeatherDetails) -> WeatherDetailsData {
+        let weatherData: WeatherDetailsData = dataService.create()
         weatherData.desc = weatherDetails.weather?[0].description
         weatherData.humidity = Int32((weatherDetails.main?.humidity)!)
         weatherData.icon = weatherDetails.weather?[0].icon
@@ -46,5 +39,6 @@ class WeatherDataStoreServiceImpl: WeatherDataStoreService {
         weatherData.temp = (weatherDetails.main?.temp)!
         weatherData.time = Date(timeIntervalSince1970: TimeInterval(weatherDetails.dt!)) as NSDate?
         weatherData.wind = (weatherDetails.wind?.speed)!
+        return weatherData
     }
 }

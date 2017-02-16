@@ -48,7 +48,10 @@ class WeatherForecastViewController: UIViewController, WeatherForecastViewInput,
         cell.weatherDescriptionLabel.text = weatherDetails.desc
         cell.tempLabel.text = String(describing: weatherDetails.temp!)
         cell.windLabel.text = String(describing: weatherDetails.wind!)
-        cell.weatherIcon.image = UIImage(named: "\(weatherDetails.icon!).png")
+        if let iconName = weatherDetails.icon {
+            let icon = UIImage(named: "\(iconName).png")
+            cell.weatherIcon.image = icon
+        }
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
