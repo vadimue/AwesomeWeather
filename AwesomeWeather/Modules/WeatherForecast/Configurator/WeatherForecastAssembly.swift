@@ -39,6 +39,7 @@ class WeatherForecastAssembly: Assembly {
             let weatherProviderService = WeatherProviderServiceImpl()
             weatherProviderService.weatherDataStoreService = r.resolve(WeatherDataStoreService.self)
             weatherProviderService.weatherService = r.resolve(WeatherService.self)
+            weatherProviderService.dataService = r.resolve(DataService.self)
             return weatherProviderService
         }
 

@@ -44,14 +44,13 @@ class WeatherForecastViewController: UIViewController, WeatherForecastViewInput,
             return
         }
         let date = weatherDetails.time
-        cell.dayOfWeekLabel.text = String(describing: date)
+        cell.dayOfWeekLabel.text = date != nil ? String(describing: date!) : "None"
         cell.weatherDescriptionLabel.text = weatherDetails.desc
         cell.tempLabel.text = String(describing: weatherDetails.temp!)
         cell.windLabel.text = String(describing: weatherDetails.wind!)
-        if let iconName = weatherDetails.icon {
-            let icon = UIImage(named: "\(iconName).png")
-            cell.weatherIcon.image = icon
-        }
+        let icon = weatherDetails.icon != nil ? UIImage(named: "\(weatherDetails.icon!).png") : nil
+        cell.weatherIcon.image = icon
+
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

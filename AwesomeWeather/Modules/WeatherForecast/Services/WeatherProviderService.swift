@@ -14,17 +14,18 @@ protocol WeatherProviderService {
 
 class WeatherProviderServiceImpl : WeatherProviderService {
     var weatherDataStoreService: WeatherDataStoreService!
+    var dataService: DataService!
     var weatherService: WeatherService!
 
     func findForecast(forCity city: String, completionHandler: @escaping ([Weather]) -> ()) {
         var weatherItems: [Weather]!
-        let weatherDetails: [WeatherDetailsData] = weatherDataStoreService.fetch()
-        if !weatherDetails.isEmpty {
+        let weatherDetails = fetchFromDatabase(forCity: city)
+        if correctDataInStore(weatherDetails: weatherDetails) {
             weatherItems = map(weatherDetailsData: weatherDetails)
             completionHandler(weatherItems)
             return
         }
-
+        dataService?.remove(entities: weatherDetails)
         weatherService.obtainForecast(forCity: city) { (response) in
             guard let weatherForecast = response.result.value else {
                 return
@@ -33,6 +34,28 @@ class WeatherProviderServiceImpl : WeatherProviderService {
             completionHandler(self.map(weatherResponse: weatherForecast))
         }
 
+    }
+
+    private func fetchFromDatabase(forCity city: String) -> [WeatherDetailsData] {
+        return dataService.fetchFiltered(with: "city", equalTo: city)
+    }
+
+    private func correctDataInStore(weatherDetails : [WeatherDetailsData]) -> Bool {
+        if weatherDetails.count == 0 { return false }
+        return !weatherDetails.contains { isLessThanDate(firstDate: $0.time!, dateToCompare: Date()) }
+    }
+
+    private func isLessThanDate(firstDate: NSDate, dateToCompare: Date) -> Bool {
+        //Declare Variables
+        var isLess = false
+
+        //Compare Values
+        if firstDate.compare(dateToCompare) == ComparisonResult.orderedAscending {
+            isLess = true
+        }
+
+        //Return Result
+        return isLess
     }
 
     private func map(weatherDetailsData: [WeatherDetailsData]) -> [Weather] {

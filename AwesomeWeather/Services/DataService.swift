@@ -13,6 +13,7 @@ import CoreData
 protocol DataService {
     func create<T>() -> T where T: Entity
     func fetch<T>() -> [T] where T: Entity
+    func fetchFiltered<T>(with: String, equalTo: String) -> [T] where T: Entity
     func insert<T>(entity: T) where T: Entity
     func insert<T>(entities: [T]) where T: Entity
     func remove<T>(entity: T) where T: Entity
@@ -32,6 +33,12 @@ class DataServiceImpl: NSObject, DataService {
     func fetch<T>() -> [T] where T: Entity {
         return try! coreDataStorage.operation { (context, save) -> [T] in
             return try! context.fetch(FetchRequest<T>())
+        }
+    }
+
+    func fetchFiltered<T>(with: String, equalTo: String) -> [T] where T: Entity {
+        return try! coreDataStorage.operation { (context, save) -> [T] in
+            return try! context.fetch(FetchRequest<T>().filtered(with: with, equalTo: equalTo))
         }
     }
 

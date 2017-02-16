@@ -2,7 +2,7 @@
 //  WeatherDetailsData+CoreDataProperties.swift
 //  AwesomeWeather
 //
-//  Created by Vadym Brusko on 2/14/17.
+//  Created by Vadym Brusko on 2/16/17.
 //  Copyright © 2017 Vadym Brusko. All rights reserved.
 //
 
@@ -23,5 +23,6 @@ extension WeatherDetailsData {
     @NSManaged public var temp: Double
     @NSManaged public var time: NSDate?
     @NSManaged public var wind: Double
+    @NSManaged public var city: String?
 
 }

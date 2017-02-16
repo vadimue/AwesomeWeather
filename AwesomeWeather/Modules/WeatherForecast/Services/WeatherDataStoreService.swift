@@ -16,9 +16,11 @@ protocol WeatherDataStoreService {
 class WeatherDataStoreServiceImpl: WeatherDataStoreService {
 
     var dataService: DataService!
+    var city: String?
 
     func saveWeatherResponse(weatherResponse: WeatherResponse) {
         guard let weatherResponseItems = weatherResponse.list else { return }
+        city = weatherResponse.city?.name
         saveWeatherDetails(weatherResponse: weatherResponseItems)
     }
 
@@ -39,6 +41,7 @@ class WeatherDataStoreServiceImpl: WeatherDataStoreService {
         weatherData.temp = (weatherDetails.main?.temp)!
         weatherData.time = Date(timeIntervalSince1970: TimeInterval(weatherDetails.dt!)) as NSDate?
         weatherData.wind = (weatherDetails.wind?.speed)!
+        weatherData.city = city
         return weatherData
     }
 }
