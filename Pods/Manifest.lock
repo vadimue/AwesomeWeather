@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (4.0.1):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
+  - Cuckoo (0.8.3)
   - ObjectMapper (2.2.2)
   - Result (3.1.0)
   - SugarRecord/CoreData (3.0.0):
@@ -15,14 +16,26 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - AlamofireObjectMapper (~> 4.0)
+  - Cuckoo (from `https://github.com/SwiftKit/Cuckoo.git`, branch `master`)
   - SugarRecord/CoreData
   - Swinject (= 2.0.0)
   - SwinjectStoryboard (= 1.0.0)
   - ViperMcFlurry
 
+EXTERNAL SOURCES:
+  Cuckoo:
+    :branch: master
+    :git: https://github.com/SwiftKit/Cuckoo.git
+
+CHECKOUT OPTIONS:
+  Cuckoo:
+    :commit: 953f4bf9ade3d38d597395ac539561384ad936b1
+    :git: https://github.com/SwiftKit/Cuckoo.git
+
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
+  Cuckoo: 4a7ae6d9eccf1353cd3ff2c8280b3e647a01e55d
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   SugarRecord: c17d4a17b257cac4c4355b2790685b1e49b32de3
@@ -30,6 +43,6 @@ SPEC CHECKSUMS:
   SwinjectStoryboard: 8e0d3c0202b64172bdf915d55e8dc83d9c4e7863
   ViperMcFlurry: 701bc3ad8d188b1f1e157ec0ddf4e77184de88b5
 
-PODFILE CHECKSUM: 3d2e889b17b2a6523396da427080b1f1805606bb
+PODFILE CHECKSUM: 36ead7763a1dafd98e94cddeac8a4644d498e309
 
 COCOAPODS: 1.2.0
