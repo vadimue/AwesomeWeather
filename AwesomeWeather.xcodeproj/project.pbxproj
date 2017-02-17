@@ -37,6 +37,7 @@
 		77AD03A01E544C9800FE3932 /* WeatherDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD039F1E544C9800FE3932 /* WeatherDataStoreService.swift */; };
 		77AD03A31E55974800FE3932 /* WeatherDetailsData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD03A11E55974800FE3932 /* WeatherDetailsData+CoreDataClass.swift */; };
 		77AD03A41E55974800FE3932 /* WeatherDetailsData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD03A21E55974800FE3932 /* WeatherDetailsData+CoreDataProperties.swift */; };
+		77AE47571E574027001A295F /* MockDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AE47561E574027001A295F /* MockDataService.swift */; };
 		77AF8CCF1E4B77A30086403B /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AF8CCE1E4B77A30086403B /* WeatherService.swift */; };
 		77AF8CE61E4C88F50086403B /* WeatherForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AF8CE51E4C88F50086403B /* WeatherForecastTableViewCell.swift */; };
 		77CA6D191E56F26A00F053C8 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CA6D181E56F26A00F053C8 /* GeneratedMocks.swift */; };
@@ -119,6 +120,7 @@
 		77AD039F1E544C9800FE3932 /* WeatherDataStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataStoreService.swift; sourceTree = "<group>"; };
 		77AD03A11E55974800FE3932 /* WeatherDetailsData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeatherDetailsData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		77AD03A21E55974800FE3932 /* WeatherDetailsData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeatherDetailsData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		77AE47561E574027001A295F /* MockDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataService.swift; sourceTree = "<group>"; };
 		77AF8CCE1E4B77A30086403B /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		77AF8CE51E4C88F50086403B /* WeatherForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecastTableViewCell.swift; sourceTree = "<group>"; };
 		77CA6D181E56F26A00F053C8 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		77866AC21E4B04CD00AA9407 /* AwesomeWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				77AE47551E574013001A295F /* Mocks */,
 				77CA6D181E56F26A00F053C8 /* GeneratedMocks.swift */,
 				77866AC31E4B04CD00AA9407 /* AwesomeWeatherTests.swift */,
 				77866AC51E4B04CD00AA9407 /* Info.plist */,
@@ -365,6 +368,14 @@
 				77AD039F1E544C9800FE3932 /* WeatherDataStoreService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		77AE47551E574013001A295F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				77AE47561E574027001A295F /* MockDataService.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		77AF8CCD1E4B777B0086403B /* Services */ = {
@@ -708,7 +719,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Define output file. Change \"$PROJECT_DIR/Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"./${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = $OUTPUT_FILE\"\n\n# Define input directory. Change \"$PROJECT_DIR\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"$PROJECT_DIR\"\necho \"Mocks Input Directory = $INPUT_DIR\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n${PODS_ROOT}/Cuckoo/run generate --testable \"$PROJECT_NAME\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"$INPUT_DIR/AwesomeWeather/Services/WeatherService.swift\" \\\n\"$INPUT_DIR/AwesomeWeather/Modules/WeatherForecast/Services/WeatherDataStoreService.swift\" \\\n\"$INPUT_DIR/AwesomeWeather/Modules/WeatherForecast/Services/WeatherProviderService.swift\"\n# ... and so forth\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.";
+			shellScript = "# Define output file. Change \"$PROJECT_DIR/Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"./${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = $OUTPUT_FILE\"\n\n# Define input directory. Change \"$PROJECT_DIR\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"$PROJECT_DIR\"\necho \"Mocks Input Directory = $INPUT_DIR\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n${PODS_ROOT}/Cuckoo/run generate --testable \"$PROJECT_NAME\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"$INPUT_DIR/AwesomeWeather/Services/WeatherService.swift\" \\\n\"$INPUT_DIR/AwesomeWeather/Modules/WeatherForecast/Services/WeatherDataStoreService.swift\" \\\n\"$INPUT_DIR/AwesomeWeather/Modules/WeatherForecast/Services/WeatherProviderService.swift\"\n\n# ... and so forth\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.";
 		};
 		A60FBECB1220FFD5D614F393 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -832,6 +843,7 @@
 				81AF0E8ACD2D63EE9B861092 /* WeatherForecastInteractorTests.swift in Sources */,
 				B84C29FAFC2684B3E388525E /* WeatherForecastPresenterTests.swift in Sources */,
 				1DCB4C16E11C683A60FAF32F /* WeatherForecastRouterTests.swift in Sources */,
+				77AE47571E574027001A295F /* MockDataService.swift in Sources */,
 				77CA6D191E56F26A00F053C8 /* GeneratedMocks.swift in Sources */,
 				77CA6D1C1E56F4F500F053C8 /* WeatherProviderServiceTests.swift in Sources */,
 				557D4DB57B50E4D96AB801DF /* DetailWeatherViewTests.swift in Sources */,

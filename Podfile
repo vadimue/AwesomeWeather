@@ -16,9 +16,6 @@ target 'AwesomeWeather' do
   target 'AwesomeWeatherTests' do
       inherit! :search_paths
       # Pods for testing
-      pod 'Cuckoo',
-      :git => 'https://github.com/SwiftKit/Cuckoo.git',
-      :branch => 'master'
   end
 
 end

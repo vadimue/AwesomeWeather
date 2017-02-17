@@ -8,7 +8,6 @@
 //
 
 import SugarRecord
-import CoreData
 
 protocol DataService {
     func create<T>() -> T where T: Entity
@@ -21,7 +20,7 @@ protocol DataService {
 }
 
 class DataServiceImpl: NSObject, DataService {
-    
+
     lazy var coreDataStorage: CoreDataDefaultStorage = {
         let store = CoreDataStore.named("weathers-db")
         let bundle = Bundle(for: DataServiceImpl.classForCoder())
@@ -79,6 +78,5 @@ class DataServiceImpl: NSObject, DataService {
             return entity
         }
     }
-
+    
 }
-
