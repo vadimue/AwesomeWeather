@@ -71,6 +71,9 @@ class WeatherProviderServiceImpl : WeatherProviderService {
     }
 
     private func map(weatherResponse: WeatherResponse) -> [Weather] {
+        guard weatherResponse.list != nil else {
+            return [Weather]()
+        }
         return (weatherResponse.list?.map({ (weatherDetailsItem: WeatherDetails) -> Weather in
             return Weather(desc: weatherDetailsItem.weather?[0].description,
                            humidity: Int((weatherDetailsItem.main?.humidity)!),

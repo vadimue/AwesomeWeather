@@ -12,6 +12,8 @@ import SugarRecord
 
 class MockDataService: DataService {
 
+    var removeWasCalled = false
+
     var array: [Any]! = []
 
     func fetch<T>() -> [T] where T: Entity {
@@ -35,7 +37,7 @@ class MockDataService: DataService {
     }
 
     func remove<T>(entities: [T]) where T: Entity {
-
+        removeWasCalled = true
     }
 
     func create<T>() -> T where T: Entity {

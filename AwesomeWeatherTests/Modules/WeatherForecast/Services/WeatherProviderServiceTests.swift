@@ -10,6 +10,7 @@ import XCTest
 import Cuckoo
 import Alamofire
 import CoreData
+import ObjectMapper
 @testable import AwesomeWeather
 
 class WeatherProviderServiceTests: XCTestCase {
@@ -18,8 +19,9 @@ class WeatherProviderServiceTests: XCTestCase {
     var mockWeatherService: MockWeatherService!
     var mockDataService: MockDataService!
     var mockWeatherDataStoreService: MockWeatherDataStoreService!
-    var dataService: MockDataService!
     var moc: NSManagedObjectContext!
+
+    let correctWeatherJson: String = "{\"city\": { \"name\": \"Shuzenji\", \"list\": [{ \"dt\": 1406106000, \"main\": { \"temp\": 298.77, \"humidity\": 87 }, \"weather\": [ { \"id\": 804, \"main\": \"Clouds\", \"description\": \"overcast clouds\", \"icon\": \"04d\" } ], \"wind\": { \"speed\": 5.71 } } ] } }"
 
     override func setUp() {
         super.setUp()
@@ -50,17 +52,42 @@ class WeatherProviderServiceTests: XCTestCase {
     func test_FindForecast_IncorrectDataInStore_ResultFromWeatherService() {
 
         // given
-        stub(mockWeatherService) { (mock) in
-            mock.obtainForecast(forCity: anyString(), completionHandler: anyClosure())
-                .then({ $0.1(self.createErrorResponse())})
-        }
+        mockObtainForecast(withResponse: createSuccessResponse())
+        mockSaveWeatherResponse()
 
         // when
         var result: [Weather]?
         service.findForecast(forCity: "") { result = $0 }
 
         // then
-        //XCTAssertNotNil(result)
+        XCTAssertNotNil(result)
+    }
+
+    func test_FindForecast_IncorrectDataInStore_RemoveOutdateWeather() {
+
+        // given
+        mockObtainForecast(withResponse: createSuccessResponse())
+        mockSaveWeatherResponse()
+
+        // when
+        service.findForecast(forCity: "") {_ in}
+
+        // then
+        XCTAssert(mockDataService.removeWasCalled)
+    }
+
+    func test_FindForecast_ObtainedForecastFromWeb_SavedToDatabase() {
+
+        // given
+        let weatherResponse = createSuccessResponse()
+        mockObtainForecast(withResponse: weatherResponse)
+        mockSaveWeatherResponse()
+
+        // when
+        service.findForecast(forCity: "") {_ in}
+
+        // then
+        verify(mockWeatherDataStoreService).saveWeatherResponse(weatherResponse: any())
     }
 
     private func createCorrectWeatherDetailsData() -> [WeatherDetailsData] {
@@ -72,17 +99,27 @@ class WeatherProviderServiceTests: XCTestCase {
         return array
     }
 
-    private func createErrorResponse() -> DataResponse<WeatherResponse> {
-        let weatherResult = Result<WeatherResponse>.failure(MyError())
+    private func createSuccessResponse() -> DataResponse<WeatherResponse> {
+        let weather = Mapper<WeatherResponse>().map(JSONString: correctWeatherJson)
+        let weatherResult = Result<WeatherResponse>.success(weather!)
         let weatherResponse = DataResponse<WeatherResponse>(request: nil, response: nil, data: nil, result: weatherResult)
         return weatherResponse
     }
 
-    class MyError: Error {
-
+    private func mockObtainForecast(withResponse response: DataResponse<WeatherResponse>) {
+        stub(mockWeatherService) { (mock) in
+            mock.obtainForecast(forCity: anyString(), completionHandler: anyClosure())
+                .then({ $0.1(response)})
+        }
     }
 
-    func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
+    private func mockSaveWeatherResponse() {
+        stub(mockWeatherDataStoreService) { (mock) in
+            mock.saveWeatherResponse(weatherResponse: any()).thenDoNothing()
+        }
+    }
+
+    private func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
         let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
 
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
