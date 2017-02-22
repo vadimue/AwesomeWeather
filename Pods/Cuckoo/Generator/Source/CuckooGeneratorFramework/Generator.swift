@@ -64,11 +64,6 @@ public struct Generator {
     }
 
     private func minAccessibility(_ val1: Accessibility, _ val2: Accessibility) -> Accessibility {
-
-        if val1 == .Open || val2 == .Open {
-            return .Open
-        }
-
         if val1 == .Public || val2 == .Public {
             return .Public
         }

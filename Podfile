@@ -12,6 +12,7 @@ target 'AwesomeWeather' do
     pod 'SwinjectStoryboard', '1.0.0'
     pod 'ViperMcFlurry'
     pod "SugarRecord/CoreData"
+    pod 'Cuckoo'
     
   target 'AwesomeWeatherTests' do
       inherit! :search_paths

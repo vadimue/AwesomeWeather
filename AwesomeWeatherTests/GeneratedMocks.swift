@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherDataStoreService.swift at 2017-02-22 07:44:16 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherDataStoreService.swift at 2017-02-22 09:01:02 +0000
 
 //
 //  WeatherDataStoreService.swift
@@ -276,7 +276,7 @@ class WeatherDataStoreServiceImplStub: WeatherDataStoreServiceImpl {
     }
 }
 
-// MARK: - Mocks generated from file: AwesomeWeather/Services/WeatherService.swift at 2017-02-22 07:44:16 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Services/WeatherService.swift at 2017-02-22 09:01:02 +0000
 
 //
 //  WeatherService.swift
@@ -404,7 +404,7 @@ class WeatherServiceImplStub: WeatherServiceImpl {
     }
 }
 
-// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherProviderService.swift at 2017-02-22 07:44:16 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherProviderService.swift at 2017-02-22 09:01:02 +0000
 
 //
 //  WeatherProviderService.swift

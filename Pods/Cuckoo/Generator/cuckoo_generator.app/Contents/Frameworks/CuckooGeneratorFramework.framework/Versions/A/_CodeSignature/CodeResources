@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		+RgcEixgVZtvdUiww/q+ARLHFBI=
+		CEUlb4ISGSaZbQmWWQIDGexAFLw=
 		</data>
 		<key>Resources/libswiftRemoteMirror.dylib</key>
 		<data>
@@ -19,55 +19,55 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			TKe9TEQhnPonAJOe24tP1YbcSTQ=
+			on/k8NrKPIh216oEJqYWhiAbtv8=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"2c2783f4c02a769843e8b13f49c6fc03db27e2da" or cdhash H"4ca7bd4c44219cfa2700939edb8b4fd586dc4934"</string>
+			<string>cdhash H"eaefe44f87c361ed5b936c394fb1ca25737f8829" or cdhash H"a27fe4f0daca3c8876d7aa0426a61686201bb6ff"</string>
 		</dict>
 		<key>Frameworks/FileKit.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			MRdjLf70ZjnytkBE+0PYVM9FwCI=
+			DFzrTV5Naa9xx86NgjRAyz8P6Wg=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"f1ff3e89a484dcb4dadaace0386676bed9814953" or cdhash H"3117632dfef46639f2b64044fb43d854cf45c022"</string>
+			<string>cdhash H"a66bb4fa0ba8718e0caa4c00d78b8f507e895005" or cdhash H"0c5ceb4d5e4d69af71c7ce8d823440cb3f0fe968"</string>
 		</dict>
 		<key>Frameworks/Result.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			VHxD/4AyX1RZgjm8D1dXjVFMtTg=
+			8O8ZD50+JpeTbipu+XnTnw/wDOE=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"cd3d378acc5d7299b2d3cf4a3befcc0941e104ce" or cdhash H"547c43ff80325f54598239bc0f57578d514cb538"</string>
+			<string>cdhash H"e9dab0c3566793568ef4354799344482a0e4b7e6" or cdhash H"f0ef190f9d3e2697936e2a6ef979d39f0ff00ce1"</string>
 		</dict>
 		<key>Frameworks/SWXMLHash.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			tE0F7VQpiRJ+jtE9a8xJsv+LyK8=
+			mOuPjg2eH4Ws9/x+xgky3208Jz4=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"cb6191eb950ef25fa2839b10752faa5bf84ad2f4" or cdhash H"b44d05ed542989127e8ed13d6bcc49b2ff8bc8af"</string>
+			<string>cdhash H"22cd15931b09dce939baeff76f75910a442ee1a3" or cdhash H"98eb8f8e0d9e1f85acf7fc7ec60932df6d3c273e"</string>
 		</dict>
 		<key>Frameworks/SourceKittenFramework.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			sa0JmA7ASblCB91lfX5uidO90rA=
+			oVEnEAkN6f/13SG1zxd4Bdmvwo8=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"a31d89d787f2003d05061c0349b72114a1ef73e8" or cdhash H"b1ad09980ec049b94207dd657d7e6e89d3bdd2b0"</string>
+			<string>cdhash H"1829833d6645feb534d8f26608c48286638d6ac2" or cdhash H"a1512710090de9fff5dd21b5cf177805d9afc28f"</string>
 		</dict>
 		<key>Frameworks/Yaml.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			ghqYFY12TulH4BuMpwKLkfoTS9Q=
+			y/pmh8pUF961PSu3FGC7LvjokUU=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"925e5400f5164336283d99125a995c57cab77bb4" or cdhash H"821a98158d764ee947e01b8ca7028b91fa134bd4"</string>
+			<string>cdhash H"d4c87e7cc2d9db50b4de4eaa2e369b3a8b514ce4" or cdhash H"cbfa6687ca5417deb53d2bb71460bb2ef8e89145"</string>
 		</dict>
 		<key>Frameworks/libswiftAppKit.dylib</key>
 		<dict>
@@ -181,11 +181,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			+RgcEixgVZtvdUiww/q+ARLHFBI=
+			CEUlb4ISGSaZbQmWWQIDGexAFLw=
 			</data>
 			<key>hash2</key>
 			<data>
-			ctYa7Xq45uwRWeestTLgkoJlMQfLfrWm6BD9ppZRAWE=
+			k4+tqqyTAGqhbr5AYugJvZ8lElawntc1EvjYly4fcBo=
 			</data>
 		</dict>
 		<key>Resources/libswiftRemoteMirror.dylib</key>
