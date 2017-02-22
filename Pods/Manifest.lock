@@ -6,6 +6,13 @@ PODS:
   - Cuckoo (0.8.3)
   - ObjectMapper (2.2.2)
   - Result (3.1.0)
+  - RxBlocking (3.2.0):
+    - RxSwift (~> 3.1)
+  - RxCocoa (3.2.0):
+    - RxSwift (~> 3.1)
+  - RxSwift (3.2.0)
+  - RxTest (3.2.0):
+    - RxSwift (~> 3.0)
   - SugarRecord/CoreData (3.0.0):
     - Result (~> 3.0)
   - Swinject (2.0.0)
@@ -17,6 +24,10 @@ DEPENDENCIES:
   - Alamofire (~> 4.3)
   - AlamofireObjectMapper (~> 4.0)
   - Cuckoo
+  - RxBlocking (~> 3.0)
+  - RxCocoa (~> 3.0)
+  - RxSwift (~> 3.0)
+  - RxTest (~> 3.0)
   - SugarRecord/CoreData
   - Swinject (= 2.0.0)
   - SwinjectStoryboard (= 1.0.0)
@@ -28,11 +39,15 @@ SPEC CHECKSUMS:
   Cuckoo: 2daf5d23383c0a24cd60b73287a5813af4793add
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
+  RxBlocking: ec8ed471ba77b4fb98a2d60f1f8419b0b46eaa23
+  RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
+  RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
+  RxTest: 85fdd6f753e8e62635a58d37bbdd3ce7d5abbef3
   SugarRecord: c17d4a17b257cac4c4355b2790685b1e49b32de3
   Swinject: 2e964a80d70ab09b3949c99032711f89147bfd60
   SwinjectStoryboard: 8e0d3c0202b64172bdf915d55e8dc83d9c4e7863
   ViperMcFlurry: 701bc3ad8d188b1f1e157ec0ddf4e77184de88b5
 
-PODFILE CHECKSUM: 3f8e46a34655245d6f8c423a6d8a76eb4702773f
+PODFILE CHECKSUM: bbb0175967e0bd2f199d991c6a05bd80b9c58490
 
 COCOAPODS: 1.2.0
