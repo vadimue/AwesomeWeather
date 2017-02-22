@@ -11,7 +11,7 @@ import Foundation
 protocol WeatherMappable {
     func mapToPoso(fromWeatherDetailsData weatherDetailsData: [WeatherDetailsData]) -> [Weather]
     func mapToPoso(fromWeatherResponse weatherResponse: WeatherResponse) -> [Weather]
-    func mapToWeatherDetailsData(fromWeatherDetails weatherDetails: [WeatherDetails],
+    func mapToCoreDataObjects(fromWeatherDetails weatherDetails: [WeatherDetails],
                                  withWeatherCreator create: () -> WeatherDetailsData,
                                  withCity city: String) -> [WeatherDetailsData]
 }
@@ -44,7 +44,7 @@ struct WeatherMapperService : WeatherMappable {
         }))!
     }
 
-    func mapToWeatherDetailsData(fromWeatherDetails weatherDetails: [WeatherDetails],
+    func mapToCoreDataObjects(fromWeatherDetails weatherDetails: [WeatherDetails],
                                  withWeatherCreator create: () -> WeatherDetailsData,
                                  withCity city: String) -> [WeatherDetailsData] {
         return weatherDetails.map { weatherDetailsItem in

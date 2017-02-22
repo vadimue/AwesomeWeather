@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherDataStoreService.swift at 2017-02-20 11:02:27 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherDataStoreService.swift at 2017-02-22 07:41:54 +0000
 
 //
 //  WeatherDataStoreService.swift
@@ -30,8 +30,12 @@ class MockWeatherDataStoreService: WeatherDataStoreService, Cuckoo.Mock {
         return manager.call("saveWeatherResponse(weatherResponse: WeatherResponse)", parameters: (weatherResponse), original: observed.map { o in return { (weatherResponse: WeatherResponse) in o.saveWeatherResponse(weatherResponse: weatherResponse) } })
     }
     
-    func fetch() -> [WeatherDetailsData] {
-        return manager.call("fetch() -> [WeatherDetailsData]", parameters: (), original: observed.map { o in return { () -> [WeatherDetailsData] in o.fetch() } })
+    func remove(entities: [WeatherDetailsData]) {
+        return manager.call("remove(entities: [WeatherDetailsData])", parameters: (entities), original: observed.map { o in return { (entities: [WeatherDetailsData]) in o.remove(entities: entities) } })
+    }
+    
+    func fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData] {
+        return manager.call("fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData]", parameters: (with, equalTo), original: observed.map { o in return { (with: String, equalTo: String) -> [WeatherDetailsData] in o.fetchFiltered(with: with, equalTo: equalTo) } })
     }
     
     struct __StubbingProxy_WeatherDataStoreService: Cuckoo.StubbingProxy {
@@ -46,8 +50,14 @@ class MockWeatherDataStoreService: WeatherDataStoreService, Cuckoo.Mock {
             return Cuckoo.StubNoReturnFunction(stub: manager.createStub("saveWeatherResponse(weatherResponse: WeatherResponse)", parameterMatchers: matchers))
         }
         
-        func fetch() -> Cuckoo.StubFunction<(), [WeatherDetailsData]> {
-            return Cuckoo.StubFunction(stub: manager.createStub("fetch() -> [WeatherDetailsData]", parameterMatchers: []))
+        func remove<M1: Cuckoo.Matchable>(entities: M1) -> Cuckoo.StubNoReturnFunction<([WeatherDetailsData])> where M1.MatchedType == [WeatherDetailsData] {
+            let matchers: [Cuckoo.ParameterMatcher<([WeatherDetailsData])>] = [wrap(matchable: entities) { $0 }]
+            return Cuckoo.StubNoReturnFunction(stub: manager.createStub("remove(entities: [WeatherDetailsData])", parameterMatchers: matchers))
+        }
+        
+        func fetchFiltered<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(with: M1, equalTo: M2) -> Cuckoo.StubFunction<(String, String), [WeatherDetailsData]> where M1.MatchedType == String, M2.MatchedType == String {
+            let matchers: [Cuckoo.ParameterMatcher<(String, String)>] = [wrap(matchable: with) { $0.0 }, wrap(matchable: equalTo) { $0.1 }]
+            return Cuckoo.StubFunction(stub: manager.createStub("fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData]", parameterMatchers: matchers))
         }
     }
     
@@ -69,8 +79,15 @@ class MockWeatherDataStoreService: WeatherDataStoreService, Cuckoo.Mock {
         }
         
         @discardableResult
-        func fetch() -> Cuckoo.__DoNotUse<[WeatherDetailsData]> {
-            return manager.verify("fetch() -> [WeatherDetailsData]", callMatcher: callMatcher, parameterMatchers: [] as [Cuckoo.ParameterMatcher<Void>], sourceLocation: sourceLocation)
+        func remove<M1: Cuckoo.Matchable>(entities: M1) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == [WeatherDetailsData] {
+            let matchers: [Cuckoo.ParameterMatcher<([WeatherDetailsData])>] = [wrap(matchable: entities) { $0 }]
+            return manager.verify("remove(entities: [WeatherDetailsData])", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
+        
+        @discardableResult
+        func fetchFiltered<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(with: M1, equalTo: M2) -> Cuckoo.__DoNotUse<[WeatherDetailsData]> where M1.MatchedType == String, M2.MatchedType == String {
+            let matchers: [Cuckoo.ParameterMatcher<(String, String)>] = [wrap(matchable: with) { $0.0 }, wrap(matchable: equalTo) { $0.1 }]
+            return manager.verify("fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData]", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
     }
 }
@@ -81,7 +98,11 @@ class WeatherDataStoreServiceStub: WeatherDataStoreService {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-    func fetch() -> [WeatherDetailsData] {
+    func remove(entities: [WeatherDetailsData]) {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+    func fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData] {
         return DefaultValueRegistry.defaultValue(for: ([WeatherDetailsData]).self)
     }
 }
@@ -108,6 +129,15 @@ class MockWeatherDataStoreServiceImpl: WeatherDataStoreServiceImpl, Cuckoo.Mock 
         }
     }
     
+    override var weatherMapper: WeatherMappable! {
+        get {
+            return manager.getter("weatherMapper", original: observed.map { o in return { () -> WeatherMappable! in o.weatherMapper } })
+        }
+        set {
+            manager.setter("weatherMapper", value: newValue, original: observed != nil ? { self.observed?.weatherMapper = $0 } : nil)
+        }
+    }
+    
     override var city: String? {
         get {
             return manager.getter("city", original: observed.map { o in return { () -> String? in o.city } })
@@ -121,8 +151,12 @@ class MockWeatherDataStoreServiceImpl: WeatherDataStoreServiceImpl, Cuckoo.Mock 
         return manager.call("saveWeatherResponse(weatherResponse: WeatherResponse)", parameters: (weatherResponse), original: observed.map { o in return { (weatherResponse: WeatherResponse) in o.saveWeatherResponse(weatherResponse: weatherResponse) } })
     }
     
-    override func fetch() -> [WeatherDetailsData] {
-        return manager.call("fetch() -> [WeatherDetailsData]", parameters: (), original: observed.map { o in return { () -> [WeatherDetailsData] in o.fetch() } })
+    override func remove(entities: [WeatherDetailsData]) {
+        return manager.call("remove(entities: [WeatherDetailsData])", parameters: (entities), original: observed.map { o in return { (entities: [WeatherDetailsData]) in o.remove(entities: entities) } })
+    }
+    
+    override func fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData] {
+        return manager.call("fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData]", parameters: (with, equalTo), original: observed.map { o in return { (with: String, equalTo: String) -> [WeatherDetailsData] in o.fetchFiltered(with: with, equalTo: equalTo) } })
     }
     
     struct __StubbingProxy_WeatherDataStoreServiceImpl: Cuckoo.StubbingProxy {
@@ -136,6 +170,10 @@ class MockWeatherDataStoreServiceImpl: WeatherDataStoreServiceImpl, Cuckoo.Mock 
             return Cuckoo.ToBeStubbedProperty(manager: manager, name: "dataService")
         }
         
+        var weatherMapper: Cuckoo.ToBeStubbedProperty<WeatherMappable?> {
+            return Cuckoo.ToBeStubbedProperty(manager: manager, name: "weatherMapper")
+        }
+        
         var city: Cuckoo.ToBeStubbedProperty<String?> {
             return Cuckoo.ToBeStubbedProperty(manager: manager, name: "city")
         }
@@ -145,8 +183,14 @@ class MockWeatherDataStoreServiceImpl: WeatherDataStoreServiceImpl, Cuckoo.Mock 
             return Cuckoo.StubNoReturnFunction(stub: manager.createStub("saveWeatherResponse(weatherResponse: WeatherResponse)", parameterMatchers: matchers))
         }
         
-        func fetch() -> Cuckoo.StubFunction<(), [WeatherDetailsData]> {
-            return Cuckoo.StubFunction(stub: manager.createStub("fetch() -> [WeatherDetailsData]", parameterMatchers: []))
+        func remove<M1: Cuckoo.Matchable>(entities: M1) -> Cuckoo.StubNoReturnFunction<([WeatherDetailsData])> where M1.MatchedType == [WeatherDetailsData] {
+            let matchers: [Cuckoo.ParameterMatcher<([WeatherDetailsData])>] = [wrap(matchable: entities) { $0 }]
+            return Cuckoo.StubNoReturnFunction(stub: manager.createStub("remove(entities: [WeatherDetailsData])", parameterMatchers: matchers))
+        }
+        
+        func fetchFiltered<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(with: M1, equalTo: M2) -> Cuckoo.StubFunction<(String, String), [WeatherDetailsData]> where M1.MatchedType == String, M2.MatchedType == String {
+            let matchers: [Cuckoo.ParameterMatcher<(String, String)>] = [wrap(matchable: with) { $0.0 }, wrap(matchable: equalTo) { $0.1 }]
+            return Cuckoo.StubFunction(stub: manager.createStub("fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData]", parameterMatchers: matchers))
         }
     }
     
@@ -165,6 +209,10 @@ class MockWeatherDataStoreServiceImpl: WeatherDataStoreServiceImpl, Cuckoo.Mock 
             return Cuckoo.VerifyProperty(manager: manager, name: "dataService", callMatcher: callMatcher, sourceLocation: sourceLocation)
         }
         
+        var weatherMapper: Cuckoo.VerifyProperty<WeatherMappable?> {
+            return Cuckoo.VerifyProperty(manager: manager, name: "weatherMapper", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
         var city: Cuckoo.VerifyProperty<String?> {
             return Cuckoo.VerifyProperty(manager: manager, name: "city", callMatcher: callMatcher, sourceLocation: sourceLocation)
         }
@@ -176,8 +224,15 @@ class MockWeatherDataStoreServiceImpl: WeatherDataStoreServiceImpl, Cuckoo.Mock 
         }
         
         @discardableResult
-        func fetch() -> Cuckoo.__DoNotUse<[WeatherDetailsData]> {
-            return manager.verify("fetch() -> [WeatherDetailsData]", callMatcher: callMatcher, parameterMatchers: [] as [Cuckoo.ParameterMatcher<Void>], sourceLocation: sourceLocation)
+        func remove<M1: Cuckoo.Matchable>(entities: M1) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == [WeatherDetailsData] {
+            let matchers: [Cuckoo.ParameterMatcher<([WeatherDetailsData])>] = [wrap(matchable: entities) { $0 }]
+            return manager.verify("remove(entities: [WeatherDetailsData])", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
+        
+        @discardableResult
+        func fetchFiltered<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(with: M1, equalTo: M2) -> Cuckoo.__DoNotUse<[WeatherDetailsData]> where M1.MatchedType == String, M2.MatchedType == String {
+            let matchers: [Cuckoo.ParameterMatcher<(String, String)>] = [wrap(matchable: with) { $0.0 }, wrap(matchable: equalTo) { $0.1 }]
+            return manager.verify("fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData]", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
     }
 }
@@ -187,6 +242,14 @@ class WeatherDataStoreServiceImplStub: WeatherDataStoreServiceImpl {
     override var dataService: DataService! {
         get {
             return DefaultValueRegistry.defaultValue(for: (DataService!).self)
+        }
+        set {
+        }
+    }
+    
+    override var weatherMapper: WeatherMappable! {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (WeatherMappable!).self)
         }
         set {
         }
@@ -204,12 +267,16 @@ class WeatherDataStoreServiceImplStub: WeatherDataStoreServiceImpl {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
     
-    override func fetch() -> [WeatherDetailsData] {
+    override func remove(entities: [WeatherDetailsData]) {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+    override func fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData] {
         return DefaultValueRegistry.defaultValue(for: ([WeatherDetailsData]).self)
     }
 }
 
-// MARK: - Mocks generated from file: AwesomeWeather/Services/WeatherService.swift at 2017-02-20 11:02:27 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Services/WeatherService.swift at 2017-02-22 07:41:54 +0000
 
 //
 //  WeatherService.swift
@@ -337,7 +404,7 @@ class WeatherServiceImplStub: WeatherServiceImpl {
     }
 }
 
-// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherProviderService.swift at 2017-02-20 11:02:27 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherProviderService.swift at 2017-02-22 07:41:54 +0000
 
 //
 //  WeatherProviderService.swift
@@ -430,21 +497,21 @@ class MockWeatherProviderServiceImpl: WeatherProviderServiceImpl, Cuckoo.Mock {
         }
     }
     
-    override var dataService: DataService! {
-        get {
-            return manager.getter("dataService", original: observed.map { o in return { () -> DataService! in o.dataService } })
-        }
-        set {
-            manager.setter("dataService", value: newValue, original: observed != nil ? { self.observed?.dataService = $0 } : nil)
-        }
-    }
-    
     override var weatherService: WeatherService! {
         get {
             return manager.getter("weatherService", original: observed.map { o in return { () -> WeatherService! in o.weatherService } })
         }
         set {
             manager.setter("weatherService", value: newValue, original: observed != nil ? { self.observed?.weatherService = $0 } : nil)
+        }
+    }
+    
+    override var weatherMapper: WeatherMappable! {
+        get {
+            return manager.getter("weatherMapper", original: observed.map { o in return { () -> WeatherMappable! in o.weatherMapper } })
+        }
+        set {
+            manager.setter("weatherMapper", value: newValue, original: observed != nil ? { self.observed?.weatherMapper = $0 } : nil)
         }
     }
     
@@ -463,12 +530,12 @@ class MockWeatherProviderServiceImpl: WeatherProviderServiceImpl, Cuckoo.Mock {
             return Cuckoo.ToBeStubbedProperty(manager: manager, name: "weatherDataStoreService")
         }
         
-        var dataService: Cuckoo.ToBeStubbedProperty<DataService?> {
-            return Cuckoo.ToBeStubbedProperty(manager: manager, name: "dataService")
-        }
-        
         var weatherService: Cuckoo.ToBeStubbedProperty<WeatherService?> {
             return Cuckoo.ToBeStubbedProperty(manager: manager, name: "weatherService")
+        }
+        
+        var weatherMapper: Cuckoo.ToBeStubbedProperty<WeatherMappable?> {
+            return Cuckoo.ToBeStubbedProperty(manager: manager, name: "weatherMapper")
         }
         
         func findForecast<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(forCity city: M1, completionHandler: M2) -> Cuckoo.StubNoReturnFunction<(String, ([Weather]) -> ())> where M1.MatchedType == String, M2.MatchedType == ([Weather]) -> () {
@@ -492,12 +559,12 @@ class MockWeatherProviderServiceImpl: WeatherProviderServiceImpl, Cuckoo.Mock {
             return Cuckoo.VerifyProperty(manager: manager, name: "weatherDataStoreService", callMatcher: callMatcher, sourceLocation: sourceLocation)
         }
         
-        var dataService: Cuckoo.VerifyProperty<DataService?> {
-            return Cuckoo.VerifyProperty(manager: manager, name: "dataService", callMatcher: callMatcher, sourceLocation: sourceLocation)
-        }
-        
         var weatherService: Cuckoo.VerifyProperty<WeatherService?> {
             return Cuckoo.VerifyProperty(manager: manager, name: "weatherService", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
+        var weatherMapper: Cuckoo.VerifyProperty<WeatherMappable?> {
+            return Cuckoo.VerifyProperty(manager: manager, name: "weatherMapper", callMatcher: callMatcher, sourceLocation: sourceLocation)
         }
         
         @discardableResult
@@ -518,17 +585,17 @@ class WeatherProviderServiceImplStub: WeatherProviderServiceImpl {
         }
     }
     
-    override var dataService: DataService! {
+    override var weatherService: WeatherService! {
         get {
-            return DefaultValueRegistry.defaultValue(for: (DataService!).self)
+            return DefaultValueRegistry.defaultValue(for: (WeatherService!).self)
         }
         set {
         }
     }
     
-    override var weatherService: WeatherService! {
+    override var weatherMapper: WeatherMappable! {
         get {
-            return DefaultValueRegistry.defaultValue(for: (WeatherService!).self)
+            return DefaultValueRegistry.defaultValue(for: (WeatherMappable!).self)
         }
         set {
         }

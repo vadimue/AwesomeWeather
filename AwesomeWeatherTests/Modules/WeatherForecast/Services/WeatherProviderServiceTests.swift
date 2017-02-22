@@ -17,7 +17,7 @@ class WeatherProviderServiceTests: XCTestCase {
 
     var service: WeatherProviderServiceImpl!
     var mockWeatherService: MockWeatherService!
-    var mockDataService: MockDataService!
+    var mockWeatherMapper: MockWeatherMapper!
     var mockWeatherDataStoreService: MockWeatherDataStoreService!
     var moc: NSManagedObjectContext!
 
@@ -26,19 +26,19 @@ class WeatherProviderServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockWeatherService = MockWeatherService()
-        mockDataService = MockDataService()
+        mockWeatherMapper = MockWeatherMapper()
         mockWeatherDataStoreService = MockWeatherDataStoreService()
         service = WeatherProviderServiceImpl()
         service.weatherService = mockWeatherService
-        service.dataService = mockDataService
+        service.weatherMapper = mockWeatherMapper
         service.weatherDataStoreService = mockWeatherDataStoreService
-        moc = setUpInMemoryManagedObjectContext()
+        moc = CoreDataHelpers.setUpInMemoryManagedObjectContext()
     }
 
     func test_FindForecast_CorrectDataInStore_ResultsFromStore() {
 
         // given
-        mockDataService.array = createCorrectWeatherDetailsData()
+        mockFetchFiltered(withReturn: createCorrectWeatherDetailsData())
 
         // when
         var result: [Weather]?
@@ -52,8 +52,7 @@ class WeatherProviderServiceTests: XCTestCase {
     func test_FindForecast_IncorrectDataInStore_ResultFromWeatherService() {
 
         // given
-        mockObtainForecast(withResponse: createSuccessResponse())
-        mockSaveWeatherResponse()
+        mockAllForIncorrectDataInStore()
 
         // when
         var result: [Weather]?
@@ -66,22 +65,19 @@ class WeatherProviderServiceTests: XCTestCase {
     func test_FindForecast_IncorrectDataInStore_RemoveOutdateWeather() {
 
         // given
-        mockObtainForecast(withResponse: createSuccessResponse())
-        mockSaveWeatherResponse()
+        mockAllForIncorrectDataInStore()
 
         // when
         service.findForecast(forCity: "") {_ in}
 
         // then
-        XCTAssert(mockDataService.removeWasCalled)
+        verify(mockWeatherDataStoreService).remove(entities: any())
     }
 
     func test_FindForecast_ObtainedForecastFromWeb_SavedToDatabase() {
 
         // given
-        let weatherResponse = createSuccessResponse()
-        mockObtainForecast(withResponse: weatherResponse)
-        mockSaveWeatherResponse()
+        mockAllForIncorrectDataInStore()
 
         // when
         service.findForecast(forCity: "") {_ in}
@@ -99,11 +95,28 @@ class WeatherProviderServiceTests: XCTestCase {
         return array
     }
 
+    private func createIncorrectWeatherDetailsData() -> [WeatherDetailsData] {
+        let weather = NSEntityDescription.insertNewObject(forEntityName: "WeatherDetailsData", into: moc) as! WeatherDetailsData
+        let timeInterval = TimeInterval(-1000000)
+        weather.time = NSDate().addingTimeInterval(timeInterval)
+        var array: [WeatherDetailsData] = []
+        array.append(weather)
+        return array
+    }
+
+
     private func createSuccessResponse() -> DataResponse<WeatherResponse> {
         let weather = Mapper<WeatherResponse>().map(JSONString: correctWeatherJson)
         let weatherResult = Result<WeatherResponse>.success(weather!)
         let weatherResponse = DataResponse<WeatherResponse>(request: nil, response: nil, data: nil, result: weatherResult)
         return weatherResponse
+    }
+
+    private func mockAllForIncorrectDataInStore() {
+        mockFetchFiltered(withReturn: createIncorrectWeatherDetailsData())
+        mockObtainForecast(withResponse: createSuccessResponse())
+        mockSaveWeatherResponse()
+        mockRemove()
     }
 
     private func mockObtainForecast(withResponse response: DataResponse<WeatherResponse>) {
@@ -119,20 +132,16 @@ class WeatherProviderServiceTests: XCTestCase {
         }
     }
 
-    private func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
-        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
-
-        let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-
-        do {
-            try persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
-        } catch {
-            print("Adding in-memory persistent store failed")
+    private func mockFetchFiltered(withReturn: [WeatherDetailsData]) {
+        stub(mockWeatherDataStoreService) { (mock) in
+            mock.fetchFiltered(with: anyString(), equalTo: anyString())
+                .thenReturn(withReturn)
         }
+    }
 
-        let managedObjectContext = NSManagedObjectContext()
-        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
-        
-        return managedObjectContext
+    private func mockRemove() {
+        stub(mockWeatherDataStoreService) { (mock) in
+            mock.remove(entities: any()).thenDoNothing()
+        }
     }
 }

@@ -10,12 +10,14 @@ import Foundation
 
 protocol WeatherDataStoreService {
     func saveWeatherResponse(weatherResponse: WeatherResponse)
-    func fetch() -> [WeatherDetailsData]
+    func remove(entities: [WeatherDetailsData])
+    func fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData]
 }
 
 class WeatherDataStoreServiceImpl: WeatherDataStoreService {
 
     var dataService: DataService!
+    var weatherMapper: WeatherMappable!
     var city: String?
 
     func saveWeatherResponse(weatherResponse: WeatherResponse) {
@@ -24,24 +26,18 @@ class WeatherDataStoreServiceImpl: WeatherDataStoreService {
         saveWeatherDetails(weatherResponse: weatherResponseItems)
     }
 
-    func fetch() -> [WeatherDetailsData] {
-        return dataService.fetch()
+    func remove(entities: [WeatherDetailsData]) {
+        return dataService.remove(entities: entities)
     }
 
     private func saveWeatherDetails(weatherResponse: [WeatherDetails]) {
-        dataService.insert(entities: weatherResponse.map {createWeatherData(withWeatherDetails: $0)})
+        let weatherDataDetails = weatherMapper.mapToCoreDataObjects(fromWeatherDetails: weatherResponse,
+                                                                    withWeatherCreator: dataService.create,
+                                                                    withCity: city!)
+        dataService.insert(entities: weatherDataDetails)
     }
 
-    private func createWeatherData(withWeatherDetails weatherDetails: WeatherDetails) -> WeatherDetailsData {
-        let weatherData: WeatherDetailsData = dataService.create()
-        weatherData.desc = weatherDetails.weather?[0].description
-        weatherData.humidity = Int32((weatherDetails.main?.humidity)!)
-        weatherData.icon = weatherDetails.weather?[0].icon
-        weatherData.main = weatherDetails.weather?[0].main
-        weatherData.temp = (weatherDetails.main?.temp)!
-        weatherData.time = Date(timeIntervalSince1970: TimeInterval(weatherDetails.dt!)) as NSDate?
-        weatherData.wind = (weatherDetails.wind?.speed)!
-        weatherData.city = city
-        return weatherData
+    internal func fetchFiltered(with: String, equalTo: String) -> [WeatherDetailsData] {
+        return dataService.fetchFiltered(with: with, equalTo: equalTo)
     }
 }

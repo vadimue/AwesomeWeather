@@ -39,13 +39,14 @@ class WeatherForecastAssembly: Assembly {
             let weatherProviderService = WeatherProviderServiceImpl()
             weatherProviderService.weatherDataStoreService = r.resolve(WeatherDataStoreService.self)
             weatherProviderService.weatherService = r.resolve(WeatherService.self)
-            weatherProviderService.dataService = r.resolve(DataService.self)
+            weatherProviderService.weatherMapper = r.resolve(WeatherMappable.self)
             return weatherProviderService
         }
 
         container.register(WeatherDataStoreService.self) { r in
             let weatherDataStoreService = WeatherDataStoreServiceImpl()
             weatherDataStoreService.dataService = r.resolve(DataService.self)
+            weatherDataStoreService.weatherMapper = r.resolve(WeatherMappable.self)
             return weatherDataStoreService
         }
 

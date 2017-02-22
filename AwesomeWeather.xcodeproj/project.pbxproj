@@ -32,6 +32,11 @@
 		77A38B4D1E519ED300C501E5 /* WeatherForecastAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A38B4C1E519ED300C501E5 /* WeatherForecastAssembly.swift */; };
 		77A38B4F1E51ABD900C501E5 /* DetailWeatherAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A38B4E1E51ABD900C501E5 /* DetailWeatherAssembly.swift */; };
 		77A38B521E51B68B00C501E5 /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A38B511E51B68B00C501E5 /* ApplicationAssembly.swift */; };
+		77AAC9F31E5B43240057C1CB /* WeatherMapperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AAC9F21E5B43240057C1CB /* WeatherMapperService.swift */; };
+		77AAC9F61E5C1FEB0057C1CB /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AAC9F51E5C1FEB0057C1CB /* DateExtensions.swift */; };
+		77AAC9F91E5C20D40057C1CB /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AAC9F81E5C20D40057C1CB /* DateExtensionsTests.swift */; };
+		77AAC9FF1E5D72900057C1CB /* MockWeatherMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AAC9FE1E5D72900057C1CB /* MockWeatherMapper.swift */; };
+		77AACA021E5D73DD0057C1CB /* CoreDataHelpres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AACA011E5D73DD0057C1CB /* CoreDataHelpres.swift */; };
 		77AD039B1E532CBF00FE3932 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD039A1E532CBF00FE3932 /* Weather.swift */; };
 		77AD039E1E5335D800FE3932 /* WeatherProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD039D1E5335D800FE3932 /* WeatherProviderService.swift */; };
 		77AD03A01E544C9800FE3932 /* WeatherDataStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AD039F1E544C9800FE3932 /* WeatherDataStoreService.swift */; };
@@ -115,6 +120,11 @@
 		77A38B4C1E519ED300C501E5 /* WeatherForecastAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherForecastAssembly.swift; sourceTree = "<group>"; };
 		77A38B4E1E51ABD900C501E5 /* DetailWeatherAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWeatherAssembly.swift; sourceTree = "<group>"; };
 		77A38B511E51B68B00C501E5 /* ApplicationAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
+		77AAC9F21E5B43240057C1CB /* WeatherMapperService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherMapperService.swift; sourceTree = "<group>"; };
+		77AAC9F51E5C1FEB0057C1CB /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		77AAC9F81E5C20D40057C1CB /* DateExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
+		77AAC9FE1E5D72900057C1CB /* MockWeatherMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWeatherMapper.swift; sourceTree = "<group>"; };
+		77AACA011E5D73DD0057C1CB /* CoreDataHelpres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelpres.swift; sourceTree = "<group>"; };
 		77AD039A1E532CBF00FE3932 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		77AD039D1E5335D800FE3932 /* WeatherProviderService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherProviderService.swift; sourceTree = "<group>"; };
 		77AD039F1E544C9800FE3932 /* WeatherDataStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataStoreService.swift; sourceTree = "<group>"; };
@@ -312,6 +322,7 @@
 		77866AAD1E4B04CD00AA9407 /* AwesomeWeather */ = {
 			isa = PBXGroup;
 			children = (
+				77AAC9F41E5C1FD90057C1CB /* Extensions */,
 				77AF8CD01E4C51D60086403B /* Models */,
 				77AF8CCD1E4B777B0086403B /* Services */,
 				77866ACE1E4B445500AA9407 /* Supporting Files */,
@@ -324,6 +335,8 @@
 		77866AC21E4B04CD00AA9407 /* AwesomeWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				77AACA001E5D73C00057C1CB /* Helpers */,
+				77AAC9F71E5C20C90057C1CB /* Extensions */,
 				77AE47551E574013001A295F /* Mocks */,
 				77CA6D181E56F26A00F053C8 /* GeneratedMocks.swift */,
 				77866AC31E4B04CD00AA9407 /* AwesomeWeatherTests.swift */,
@@ -353,6 +366,30 @@
 			path = "Application Layer";
 			sourceTree = "<group>";
 		};
+		77AAC9F41E5C1FD90057C1CB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				77AAC9F51E5C1FEB0057C1CB /* DateExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		77AAC9F71E5C20C90057C1CB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				77AAC9F81E5C20D40057C1CB /* DateExtensionsTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		77AACA001E5D73C00057C1CB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				77AACA011E5D73DD0057C1CB /* CoreDataHelpres.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		77AD03991E532BC000FE3932 /* POSO */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				77AE47561E574027001A295F /* MockDataService.swift */,
+				77AAC9FE1E5D72900057C1CB /* MockWeatherMapper.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -384,6 +422,7 @@
 				778545111E52EFD700285F46 /* ServicesAssembly.swift */,
 				77AF8CCE1E4B77A30086403B /* WeatherService.swift */,
 				778545131E52FBF700285F46 /* DataService.swift */,
+				77AAC9F21E5B43240057C1CB /* WeatherMapperService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -819,6 +858,7 @@
 				31E3B2AE397998096C8723DD /* DetailWeatherViewOutput.swift in Sources */,
 				77D37C761E5329E7004EFB53 /* WeatherDetails.swift in Sources */,
 				4A4A64802D7A31D03B3138CC /* DetailWeatherViewController.swift in Sources */,
+				77AAC9F31E5B43240057C1CB /* WeatherMapperService.swift in Sources */,
 				0B81953AA08F77FBC99E2A13 /* DetailWeatherModuleInput.swift in Sources */,
 				77AD03A01E544C9800FE3932 /* WeatherDataStoreService.swift in Sources */,
 				77A38B4D1E519ED300C501E5 /* WeatherForecastAssembly.swift in Sources */,
@@ -828,6 +868,7 @@
 				D6AA89408949F8D3ECD362FE /* DetailWeatherInteractorOutput.swift in Sources */,
 				133645309E876FBE9957E880 /* DetailWeatherInteractor.swift in Sources */,
 				77D37C711E5329E7004EFB53 /* Clouds.swift in Sources */,
+				77AAC9F61E5C1FEB0057C1CB /* DateExtensions.swift in Sources */,
 				77AD03A31E55974800FE3932 /* WeatherDetailsData+CoreDataClass.swift in Sources */,
 				D1D2C170D0CC65382A9B4CF8 /* DetailWeatherRouterInput.swift in Sources */,
 				2C376C850B227B4B21CD96F3 /* DetailWeatherRouter.swift in Sources */,
@@ -841,14 +882,17 @@
 				77866AC41E4B04CD00AA9407 /* AwesomeWeatherTests.swift in Sources */,
 				30B6F3EADDA4F77685C547CD /* WeatherForecastViewTests.swift in Sources */,
 				81AF0E8ACD2D63EE9B861092 /* WeatherForecastInteractorTests.swift in Sources */,
+				77AACA021E5D73DD0057C1CB /* CoreDataHelpres.swift in Sources */,
 				B84C29FAFC2684B3E388525E /* WeatherForecastPresenterTests.swift in Sources */,
 				1DCB4C16E11C683A60FAF32F /* WeatherForecastRouterTests.swift in Sources */,
 				77AE47571E574027001A295F /* MockDataService.swift in Sources */,
 				77CA6D191E56F26A00F053C8 /* GeneratedMocks.swift in Sources */,
 				77CA6D1C1E56F4F500F053C8 /* WeatherProviderServiceTests.swift in Sources */,
 				557D4DB57B50E4D96AB801DF /* DetailWeatherViewTests.swift in Sources */,
+				77AAC9FF1E5D72900057C1CB /* MockWeatherMapper.swift in Sources */,
 				9AFD55BE254219C2A8B89E5F /* DetailWeatherInteractorTests.swift in Sources */,
 				F404771C4B2755C9E6AF6BF4 /* DetailWeatherPresenterTests.swift in Sources */,
+				77AAC9F91E5C20D40057C1CB /* DateExtensionsTests.swift in Sources */,
 				EED386506431CC2E20F04F8A /* DetailWeatherRouterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
