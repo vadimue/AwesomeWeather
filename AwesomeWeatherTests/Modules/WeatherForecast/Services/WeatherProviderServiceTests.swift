@@ -87,18 +87,16 @@ class WeatherProviderServiceTests: XCTestCase {
     }
 
     private func createCorrectWeatherDetailsData() -> [WeatherDetailsData] {
-        let weather = NSEntityDescription.insertNewObject(forEntityName: "WeatherDetailsData", into: moc) as! WeatherDetailsData
-        let timeInterval = TimeInterval(1000000)
-        weather.time = NSDate().addingTimeInterval(timeInterval)
-        var array: [WeatherDetailsData] = []
-        array.append(weather)
-        return array
+        return createWeatherDetailsData(withTimeInterval: TimeInterval(1000000))
     }
 
     private func createIncorrectWeatherDetailsData() -> [WeatherDetailsData] {
+        return createWeatherDetailsData(withTimeInterval: TimeInterval(-1000000))
+    }
+
+    private func createWeatherDetailsData(withTimeInterval interval: TimeInterval) -> [WeatherDetailsData] {
         let weather = NSEntityDescription.insertNewObject(forEntityName: "WeatherDetailsData", into: moc) as! WeatherDetailsData
-        let timeInterval = TimeInterval(-1000000)
-        weather.time = NSDate().addingTimeInterval(timeInterval)
+        weather.time = NSDate().addingTimeInterval(interval)
         var array: [WeatherDetailsData] = []
         array.append(weather)
         return array
