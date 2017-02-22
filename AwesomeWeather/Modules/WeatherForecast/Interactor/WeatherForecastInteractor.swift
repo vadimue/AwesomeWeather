@@ -13,8 +13,13 @@ class WeatherForecastInteractor: WeatherForecastInteractorInput {
     var weatherProviderService: WeatherProviderService!
 
     func findForecast(forCity city: String) {
-        weatherProviderService.findForecast(forCity: city) { (response) in
-            self.output.gotWeatherForecast(response)
+        _ = weatherProviderService.findForecast(forCity: city)
+            .subscribe { (event) in
+                guard let element = event.element else {
+                    return
+                }
+                print("New Weather for \(city)")
+                self.output.gotWeatherForecast(element)
         }
     }
 }

@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherDataStoreService.swift at 2017-02-22 09:03:45 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherDataStoreService.swift at 2017-02-22 12:06:10 +0000
 
 //
 //  WeatherDataStoreService.swift
@@ -276,7 +276,7 @@ class WeatherDataStoreServiceImplStub: WeatherDataStoreServiceImpl {
     }
 }
 
-// MARK: - Mocks generated from file: AwesomeWeather/Services/WeatherService.swift at 2017-02-22 09:03:45 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Services/WeatherService.swift at 2017-02-22 12:06:10 +0000
 
 //
 //  WeatherService.swift
@@ -404,7 +404,7 @@ class WeatherServiceImplStub: WeatherServiceImpl {
     }
 }
 
-// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherProviderService.swift at 2017-02-22 09:03:45 +0000
+// MARK: - Mocks generated from file: AwesomeWeather/Modules/WeatherForecast/Services/WeatherProviderService.swift at 2017-02-22 12:06:10 +0000
 
 //
 //  WeatherProviderService.swift
@@ -418,6 +418,7 @@ import Cuckoo
 @testable import AwesomeWeather
 
 import Foundation
+import RxSwift
 
 class MockWeatherProviderService: WeatherProviderService, Cuckoo.Mock {
     typealias MocksType = WeatherProviderService
@@ -436,6 +437,10 @@ class MockWeatherProviderService: WeatherProviderService, Cuckoo.Mock {
         return manager.call("findForecast(forCity: String, completionHandler: @escaping ([Weather]) -> ())", parameters: (city, completionHandler), original: observed.map { o in return { (city: String, completionHandler: @escaping ([Weather]) -> ()) in o.findForecast(forCity: city, completionHandler: completionHandler) } })
     }
     
+    func findForecast(forCity city: String) -> Observable<[Weather]> {
+        return manager.call("findForecast(forCity: String) -> Observable<[Weather]>", parameters: (city), original: observed.map { o in return { (city: String) -> Observable<[Weather]> in o.findForecast(forCity: city) } })
+    }
+    
     struct __StubbingProxy_WeatherProviderService: Cuckoo.StubbingProxy {
         private let manager: Cuckoo.MockManager
         
@@ -446,6 +451,11 @@ class MockWeatherProviderService: WeatherProviderService, Cuckoo.Mock {
         func findForecast<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(forCity city: M1, completionHandler: M2) -> Cuckoo.StubNoReturnFunction<(String, ([Weather]) -> ())> where M1.MatchedType == String, M2.MatchedType == ([Weather]) -> () {
             let matchers: [Cuckoo.ParameterMatcher<(String, ([Weather]) -> ())>] = [wrap(matchable: city) { $0.0 }, wrap(matchable: completionHandler) { $0.1 }]
             return Cuckoo.StubNoReturnFunction(stub: manager.createStub("findForecast(forCity: String, completionHandler: @escaping ([Weather]) -> ())", parameterMatchers: matchers))
+        }
+        
+        func findForecast<M1: Cuckoo.Matchable>(forCity city: M1) -> Cuckoo.StubFunction<(String), Observable<[Weather]>> where M1.MatchedType == String {
+            let matchers: [Cuckoo.ParameterMatcher<(String)>] = [wrap(matchable: city) { $0 }]
+            return Cuckoo.StubFunction(stub: manager.createStub("findForecast(forCity: String) -> Observable<[Weather]>", parameterMatchers: matchers))
         }
     }
     
@@ -465,6 +475,12 @@ class MockWeatherProviderService: WeatherProviderService, Cuckoo.Mock {
             let matchers: [Cuckoo.ParameterMatcher<(String, ([Weather]) -> ())>] = [wrap(matchable: city) { $0.0 }, wrap(matchable: completionHandler) { $0.1 }]
             return manager.verify("findForecast(forCity: String, completionHandler: @escaping ([Weather]) -> ())", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
+        
+        @discardableResult
+        func findForecast<M1: Cuckoo.Matchable>(forCity city: M1) -> Cuckoo.__DoNotUse<Observable<[Weather]>> where M1.MatchedType == String {
+            let matchers: [Cuckoo.ParameterMatcher<(String)>] = [wrap(matchable: city) { $0 }]
+            return manager.verify("findForecast(forCity: String) -> Observable<[Weather]>", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
     }
 }
 
@@ -472,6 +488,10 @@ class WeatherProviderServiceStub: WeatherProviderService {
     
     func findForecast(forCity city: String, completionHandler: @escaping ([Weather]) -> ()) {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+    func findForecast(forCity city: String) -> Observable<[Weather]> {
+        return DefaultValueRegistry.defaultValue(for: (Observable<[Weather]>).self)
     }
 }
 
@@ -519,6 +539,10 @@ class MockWeatherProviderServiceImpl: WeatherProviderServiceImpl, Cuckoo.Mock {
         return manager.call("findForecast(forCity: String, completionHandler: @escaping ([Weather]) -> ())", parameters: (city, completionHandler), original: observed.map { o in return { (city: String, completionHandler: @escaping ([Weather]) -> ()) in o.findForecast(forCity: city, completionHandler: completionHandler) } })
     }
     
+    override func findForecast(forCity city: String) -> Observable<[Weather]> {
+        return manager.call("findForecast(forCity: String) -> Observable<[Weather]>", parameters: (city), original: observed.map { o in return { (city: String) -> Observable<[Weather]> in o.findForecast(forCity: city) } })
+    }
+    
     struct __StubbingProxy_WeatherProviderServiceImpl: Cuckoo.StubbingProxy {
         private let manager: Cuckoo.MockManager
         
@@ -541,6 +565,11 @@ class MockWeatherProviderServiceImpl: WeatherProviderServiceImpl, Cuckoo.Mock {
         func findForecast<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(forCity city: M1, completionHandler: M2) -> Cuckoo.StubNoReturnFunction<(String, ([Weather]) -> ())> where M1.MatchedType == String, M2.MatchedType == ([Weather]) -> () {
             let matchers: [Cuckoo.ParameterMatcher<(String, ([Weather]) -> ())>] = [wrap(matchable: city) { $0.0 }, wrap(matchable: completionHandler) { $0.1 }]
             return Cuckoo.StubNoReturnFunction(stub: manager.createStub("findForecast(forCity: String, completionHandler: @escaping ([Weather]) -> ())", parameterMatchers: matchers))
+        }
+        
+        func findForecast<M1: Cuckoo.Matchable>(forCity city: M1) -> Cuckoo.StubFunction<(String), Observable<[Weather]>> where M1.MatchedType == String {
+            let matchers: [Cuckoo.ParameterMatcher<(String)>] = [wrap(matchable: city) { $0 }]
+            return Cuckoo.StubFunction(stub: manager.createStub("findForecast(forCity: String) -> Observable<[Weather]>", parameterMatchers: matchers))
         }
     }
     
@@ -571,6 +600,12 @@ class MockWeatherProviderServiceImpl: WeatherProviderServiceImpl, Cuckoo.Mock {
         func findForecast<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(forCity city: M1, completionHandler: M2) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == String, M2.MatchedType == ([Weather]) -> () {
             let matchers: [Cuckoo.ParameterMatcher<(String, ([Weather]) -> ())>] = [wrap(matchable: city) { $0.0 }, wrap(matchable: completionHandler) { $0.1 }]
             return manager.verify("findForecast(forCity: String, completionHandler: @escaping ([Weather]) -> ())", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
+        
+        @discardableResult
+        func findForecast<M1: Cuckoo.Matchable>(forCity city: M1) -> Cuckoo.__DoNotUse<Observable<[Weather]>> where M1.MatchedType == String {
+            let matchers: [Cuckoo.ParameterMatcher<(String)>] = [wrap(matchable: city) { $0 }]
+            return manager.verify("findForecast(forCity: String) -> Observable<[Weather]>", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
     }
 }
@@ -603,5 +638,9 @@ class WeatherProviderServiceImplStub: WeatherProviderServiceImpl {
     
     override func findForecast(forCity city: String, completionHandler: @escaping ([Weather]) -> ()) {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
+    }
+    
+    override func findForecast(forCity city: String) -> Observable<[Weather]> {
+        return DefaultValueRegistry.defaultValue(for: (Observable<[Weather]>).self)
     }
 }
