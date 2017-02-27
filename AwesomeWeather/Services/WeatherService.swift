@@ -16,7 +16,7 @@ protocol WeatherService {
 class WeatherServiceImpl: WeatherService {
 
     private let baseUrl = "http://api.openweathermap.org/data/2.5/"
-    private let appId = "958f9e2267b8baf4e51eef9a95303935"
+    private let appId = "YOUR APP ID"
 
     func obtainForecast(forCity city: String, completionHandler: @escaping (DataResponse<WeatherResponse>)->()) {
         let parameters = ["q" : city, "APPID" : appId]
