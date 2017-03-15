@@ -6,6 +6,8 @@
 //  Copyright © 2017 Ciklum. All rights reserved.
 //
 
+import RxSwift
+
 protocol WeatherForecastViewOutput {
 
     /**
@@ -14,6 +16,6 @@ protocol WeatherForecastViewOutput {
     */
 
     func viewIsReady()
-    func findForecast(forText text: String?)
+    func gotWeatherForecast(cityObservable: Observable<String>) -> Observable<[Weather]>
     func didSelectRow(withWeatherDetails weatherDetails: Weather)
 }

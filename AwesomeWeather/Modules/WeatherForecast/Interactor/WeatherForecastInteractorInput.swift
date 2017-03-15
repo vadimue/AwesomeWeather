@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol WeatherForecastInteractorInput {
-    func findForecast(forCity city: String)
+    func findForecast(forCity city: String) -> Observable<[Weather]>
 }

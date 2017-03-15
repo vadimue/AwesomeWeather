@@ -6,20 +6,15 @@
 //  Copyright © 2017 Ciklum. All rights reserved.
 //
 
+import RxSwift
+
 class WeatherForecastInteractor: WeatherForecastInteractorInput {
 
     weak var output: WeatherForecastInteractorOutput!
 
     var weatherProviderService: WeatherProviderService!
 
-    func findForecast(forCity city: String) {
-        _ = weatherProviderService.findForecast(forCity: city)
-            .subscribe { (event) in
-                guard let element = event.element else {
-                    return
-                }
-                print("New Weather for \(city)")
-                self.output.gotWeatherForecast(element)
-        }
+    func findForecast(forCity city: String) -> Observable<[Weather]> {
+        return weatherProviderService.findForecast(forCity: city)
     }
 }
