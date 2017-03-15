@@ -6,6 +6,8 @@
 //  Copyright © 2017 Ciklum. All rights reserved.
 //
 
+import RxSwift
+
 class WeatherForecastPresenter: WeatherForecastModuleInput, WeatherForecastViewOutput, WeatherForecastInteractorOutput {
 
     weak var view: WeatherForecastViewInput!
@@ -16,20 +18,18 @@ class WeatherForecastPresenter: WeatherForecastModuleInput, WeatherForecastViewO
 
     }
 
-    func findForecast(forText text: String?) {
-        // todo chech this condition on null exception
-        guard let city = text, !(text?.isEmpty)! else {
-            return
-        }
-        interactor.findForecast(forCity: city)
-    }
-
-    func gotWeatherForecast(_ forecast: [Weather]) {
-        view.showWeatherForecast(forecast)
-        //view.changeTitle(forecast.city!.name!)
-    }
-
     func didSelectRow(withWeatherDetails weatherDetails: Weather) {
         router.openDetailWeatherModule(withWeatherDetails: weatherDetails)
+    }
+
+    func gotWeatherForecast(cityObservable: Observable<String>) -> Observable<[Weather]> {
+        return cityObservable
+            .observeOn(MainScheduler.instance)
+            .flatMapLatest(findForecast)
+    }
+
+    private func findForecast(city: String) -> Observable<[Weather]> {
+        print(city)
+        return self.interactor.findForecast(forCity: city)
     }
 }
