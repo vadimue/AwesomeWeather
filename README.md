@@ -1,5 +1,5 @@
 
-Simple app structured according to the architectural design pattern [VIPER] (https://www.objc.io/issues/13-architecture/viper/)
+Simple app structured according to the architectural design pattern [VIPER](https://www.objc.io/issues/13-architecture/viper/)
 
 API Provider - [OpenWeatherMap](http://openweathermap.org/api)
 
